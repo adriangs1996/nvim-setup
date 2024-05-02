@@ -1,12 +1,6 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
--- Configure Telescope
-local telescope = require("telescope.builtin")
--- vim.keymap.set('n', '<leader>f', telescope.find_files, {})			 -- Fuzzy search file names
--- vim.keymap.set('n', '<leader>gf', telescope.git_files, {})			 -- Fuzzy search git files
---vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
-
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
@@ -37,7 +31,8 @@ vim.keymap.set("n", "<leader>wj", "<C-w><C-j>", { desc = "Move focus to the lowe
 vim.keymap.set("n", "<leader>wk", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 -- Configure NvimTree
-vim.keymap.set("n", "<leader>E", vim.cmd.NvimTreeToggle, {})
+-- vim.keymap.set("n", "<leader>E", vim.cmd.NvimTreeToggle, {})
+vim.keymap.set("n", "<leader>E", ":Neotree filesystem reveal right<CR>")
 
 -- Motion
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv") -- Move up in visual mode
