@@ -236,12 +236,16 @@ require("lazy").setup("plugins", {
 
 require("custom")
 
+local colors = require("catppuccin.palettes.mocha")
+
 local groups = {
+	["@property"] = { fg = colors.teal },
+
 	["@lsp.type.interface"] = { fg = "#94E2D5" },
 	["@lsp.type.namespace.ruby"] = { fg = "#F9E2AF" },
 	["@lsp.type.class.ruby"] = { fg = "#F9E2AF" },
 	["@lsp.typemod.class.declaration.ruby"] = { fg = "#F9E2AF" },
-	["@variable.member.python"] = { fg = "#CDD6F4" },
+	-- ["@variable.member.python"] = { fg = "#CDD6F4" },
 	["@attribute.python"] = { fg = "#94E2D5" },
 	["@attribute.builtin.python"] = { fg = "#94E2D5" },
 	["@function.builtin.python"] = { fg = "#EBA0AC" },
@@ -249,6 +253,13 @@ local groups = {
 	["@type.builtin.python"] = { fg = "#CBA6F7" },
 	["@string.documentation.python"] = { fg = "#A6E3A1" },
 	["@type.builtin"] = { fg = "#CBA6F7" },
+
+	-- CPP configuration
+	["@lsp.type.macro.cpp"] = { fg = colors.teal },
+	["@type.builtin.cpp"] = { fg = colors.mauve },
+	["@keyword.import.cpp"] = { fg = colors.peach },
+	["@lsp.typemod.function.defaultLibrary.c"] = { fg = colors.text },
+	["@type.builtin.c"] = { fg = colors.mauve },
 }
 
 local function highlight(group, table)
