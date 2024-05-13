@@ -25,7 +25,17 @@ return { -- Collection of various small independent plugins/modules
 				},
 				sections = {
 					lualine_a = { "mode" },
-					lualine_b = { "branch", "diff", "diagnostics" },
+					lualine_b = {
+						"branch",
+						"diff",
+						"diagnostics",
+						{
+							"swenv",
+							cond = function()
+								return vim.bo.filetype == "python"
+							end,
+						},
+					},
 					lualine_c = { "filename" },
 					lualine_x = { "encoding", "fileformat", "filetype" },
 					lualine_y = { "progress" },

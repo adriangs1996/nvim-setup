@@ -25,10 +25,10 @@ vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" }
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
-vim.keymap.set("n", "<leader>wh", "<C-w><C-h>", { desc = "Move focus to the left window" })
-vim.keymap.set("n", "<leader>wl", "<C-w><C-l>", { desc = "Move focus to the right window" })
-vim.keymap.set("n", "<leader>wj", "<C-w><C-j>", { desc = "Move focus to the lower window" })
-vim.keymap.set("n", "<leader>wk", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+--[[ vim.keymap.set("n", "<c-h>", ":wincmd h<CR>", { desc = "Move focus to the left window" }) ]]
+--[[ vim.keymap.set("n", "<c-l>", ":wincmd l<CR>", { desc = "Move focus to the right window" }) ]]
+--[[ vim.keymap.set("n", "<c-j>", ":wincmd j<CR>", { desc = "Move focus to the lower window" }) ]]
+--[[ vim.keymap.set("n", "<c-k>", ":wincmd k<CR>", { desc = "Move focus to the upper window" }) ]]
 
 -- Configure NvimTree
 -- vim.keymap.set("n", "<leader>E", vim.cmd.NvimTreeToggle, {})
@@ -52,10 +52,6 @@ vim.keymap.set("n", "y", '"+y')
 vim.keymap.set("v", "y", '"+y')
 vim.keymap.set("n", "Y", '"+Y')
 
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
-vim.keymap.set("n", "<leader>bn", vim.cmd.bn)
-vim.keymap.set("n", "<leader>bp", vim.cmd.bp)
-
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
@@ -71,5 +67,14 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- Configure buffers
-vim.keymap.set("n", "<leader>bq", vim.cmd.BufferClose)
-vim.keymap.set("n", "<leader>bqa", vim.cmd.BufferCloseAllButCurrent)
+vim.keymap.set("n", "<leader>bq", vim.cmd.BufferClose, { desc = "[Q]uit buffer" })
+vim.keymap.set("n", "<leader>bqa", vim.cmd.BufferCloseAllButCurrent, { desc = "Close [a]ll buffers but current" })
+vim.keymap.set("n", "<leader>bs", vim.cmd.BufferOrderByBufferNumber, { desc = "[S]ort buffers by buffer number" })
+vim.keymap.set("n", "<leader>bn", vim.cmd.bn, { desc = "Go to [n]ext buffer" })
+vim.keymap.set("n", "<leader>bp", vim.cmd.bp, { desc = "Go to [p]revious buffer" })
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+
+-- Configure Neoconf commands
+vim.keymap.set("n", "<leader>cc", vim.cmd.Neoconf, { desc = "Open [C]onfiguration" })
+vim.keymap.set("n", "<leader>cl", ":Neoconf lsp<CR>", { desc = "Open [L]SP Configuration for current buffer" })
+vim.keymap.set("n", "<leader>cr", ":LspRestart<CR>", { desc = "[R]estart LSP for current buffer" })

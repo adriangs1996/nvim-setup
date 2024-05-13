@@ -102,7 +102,7 @@ vim.g.have_nerd_font = true
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = "a"
@@ -242,16 +242,6 @@ local groups = {
 	["@property"] = { fg = colors.teal },
 
 	["@lsp.type.interface"] = { fg = "#94E2D5" },
-	["@lsp.type.namespace.ruby"] = { fg = "#F9E2AF" },
-	["@lsp.type.class.ruby"] = { fg = "#F9E2AF" },
-	["@lsp.typemod.class.declaration.ruby"] = { fg = "#F9E2AF" },
-	-- ["@variable.member.python"] = { fg = "#CDD6F4" },
-	["@attribute.python"] = { fg = "#94E2D5" },
-	["@attribute.builtin.python"] = { fg = "#94E2D5" },
-	["@function.builtin.python"] = { fg = "#EBA0AC" },
-	["@keyword.operator.python"] = { fg = "#CBA6F7" },
-	["@type.builtin.python"] = { fg = "#CBA6F7" },
-	["@string.documentation.python"] = { fg = "#A6E3A1" },
 	["@type.builtin"] = { fg = "#CBA6F7" },
 
 	-- CPP configuration
@@ -260,7 +250,38 @@ local groups = {
 	["@keyword.import.cpp"] = { fg = colors.peach },
 	["@lsp.typemod.function.defaultLibrary.c"] = { fg = colors.text },
 	["@type.builtin.c"] = { fg = colors.mauve },
+
+	-- PYTHON configuration
+	-- ["@variable.member.python"] = { fg = colors.teal },
+	["@attribute.python"] = { fg = colors.sky },
+	["@attribute.builtin.python"] = { fg = colors.sky },
+	["@function.builtin.python"] = { fg = "#EBA0AC" },
+	["@keyword.operator.python"] = { fg = "#CBA6F7" },
+	["@type.builtin.python"] = { fg = "#CBA6F7" },
+	["@variable.builtin.python"] = { fg = colors.teal },
+	["@string.documentation.python"] = { fg = "#A6E3A1" },
+	["@constructor.python"] = { fg = colors.yellow },
+	-- ["@function.method.call.python"] = { fg = colors.text },
+	-- ["@function.call.python"] = { fg = colors.red },
+	-- ["@variable.parameter.python"] = { fg = colors.lavender },
+	-- ["@parameter.python"] = { fg = colors.lavender },
+
+	-- Ruby configuration
+	["@lsp.type.namespace.ruby"] = { fg = colors.yellow },
+	["@lsp.type.class.ruby"] = { fg = "#F9E2AF" },
+	["@lsp.typemod.class.declaration.ruby"] = { fg = "#F9E2AF" },
+	["rubyConstant"] = { fg = colors.peach },
+	["@variable.member.ruby"] = { fg = colors.teal },
 }
+
+local lsp = require("lspconfig")
+
+lsp.ruby_lsp.setup({
+	---@param client lsp.Client
+	on_init = function(client)
+		client.server_capabilities.semanticTokensProvider = nil
+	end,
+})
 
 local function highlight(group, table)
 	local fg = table.fg and table.fg or "NONE"
@@ -275,8 +296,6 @@ for key, value in pairs(groups) do
 	highlight(key, value)
 end
 
-vim.cmd("highlight Cursor guifg=#A6E3A1 guibg=#A6E3A1")
-
-function Nt()
-	vim.cmd(":Neotree toggle")
-end
+vim.cmd("highlight! Cursor guifg=#A6E3A1 guibg=#A6E3A1")
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
