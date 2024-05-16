@@ -150,43 +150,71 @@ require("lazy").setup("plugins", {
 
 require("custom")
 
-local colors = require("catppuccin.palettes.mocha")
+local function highlight(group, table)
+	local fg = table.fg and table.fg or "NONE"
+	local bg = table.bg and table.bg or "NONE"
+	local style = table.gui and table.gui or "NONE"
 
-local groups = {
-	["@property"] = { fg = colors.teal },
+	local cmd = "highlight! " .. group .. " guifg=" .. fg .. " guibg=" .. bg .. " gui=" .. style
+	vim.cmd(cmd)
+end
 
-	["@lsp.type.interface"] = { fg = "#94E2D5" },
-	["@type.builtin"] = { fg = "#CBA6F7" },
+if vim.g.colors_name == "catppuccin-mocha" then
+	local colors = require("catppuccin.palettes.mocha")
 
-	-- CPP configuration
-	["@lsp.type.macro.cpp"] = { fg = colors.teal },
-	["@type.builtin.cpp"] = { fg = colors.mauve },
-	["@keyword.import.cpp"] = { fg = colors.peach },
-	["@lsp.typemod.function.defaultLibrary.c"] = { fg = colors.text },
-	["@type.builtin.c"] = { fg = colors.mauve },
+	local groups = {
+		-- General
+		["@lsp.type"] = { fg = colors.teal },
+		["@type"] = { fg = colors.teal },
+		["@lsp.type.interface"] = { fg = colors.yellow },
+		["@type.interface"] = { fg = colors.yellow },
+		["@type.builtin"] = { fg = colors.mauve },
+		["@variable.parameter"] = { fg = colors.flamingo },
+		["@parameter"] = { fg = colors.flamingo },
+		["@function.macro"] = { fg = colors.yellow },
+		["@module"] = { fg = colors.peach },
 
-	-- PYTHON configuration
-	-- ["@variable.member.python"] = { fg = colors.teal },
-	["@attribute.python"] = { fg = colors.sky },
-	["@attribute.builtin.python"] = { fg = colors.sky },
-	["@function.builtin.python"] = { fg = "#EBA0AC" },
-	["@keyword.operator.python"] = { fg = "#CBA6F7" },
-	["@type.builtin.python"] = { fg = "#CBA6F7" },
-	["@variable.builtin.python"] = { fg = colors.teal },
-	["@string.documentation.python"] = { fg = "#A6E3A1" },
-	["@constructor.python"] = { fg = colors.yellow },
-	-- ["@function.method.call.python"] = { fg = colors.text },
-	-- ["@function.call.python"] = { fg = colors.red },
-	-- ["@variable.parameter.python"] = { fg = colors.lavender },
-	-- ["@parameter.python"] = { fg = colors.lavender },
+		-- CPP configuration
+		["@lsp.type.macro.cpp"] = { fg = colors.yellow },
+		["@keyword.import.cpp"] = { fg = colors.peach },
+		["@lsp.typemod.function.defaultLibrary.c"] = { fg = colors.text },
+		["@type.builtin.c"] = { fg = colors.mauve },
 
-	-- Ruby configuration
-	["@lsp.type.namespace.ruby"] = { fg = colors.yellow },
-	["@lsp.type.class.ruby"] = { fg = "#F9E2AF" },
-	["@lsp.typemod.class.declaration.ruby"] = { fg = "#F9E2AF" },
-	["rubyConstant"] = { fg = colors.peach },
-	["@variable.member.ruby"] = { fg = colors.teal },
-}
+		-- PYTHON configuration
+		-- ["@variable.member.python"] = { fg = colors.teal },
+		["@attribute.python"] = { fg = colors.yellow },
+		["@attribute.builtin.python"] = { fg = colors.yellow },
+		["@function.builtin.python"] = { fg = colors.mauve },
+		["@keyword.operator.python"] = { fg = colors.mauve },
+		["@type.builtin.python"] = { fg = colors.mauve },
+		["@variable.builtin.python"] = { fg = colors.red },
+		["@string.documentation.python"] = { fg = colors.green },
+		["@constructor.python"] = { fg = colors.teal },
+
+		-- Ruby configuration
+		["@lsp.type.namespace.ruby"] = { fg = colors.teal },
+		["@lsp.type.class.ruby"] = { fg = colors.teal },
+		["@lsp.typemod.class.declaration.ruby"] = { fg = colors.teal },
+		["rubyConstant"] = { fg = colors.peach },
+		["@variable.member.ruby"] = { fg = colors.red },
+
+		-- Rust config
+		["@lsp.type.decorator.rust"] = { fg = colors.yellow },
+		["@lsp.type.macro.rust"] = { fg = colors.blue },
+		["@lsp.typemod.enumMember.defaultLibrary.rust"] = { fg = colors.sky },
+		["@lsp.typemod.method.defaultLibrary.rust"] = { fg = colors.sapphire },
+		["@lsp.typemod.function.defaultLibrary.rust"] = { fg = colors.sapphire },
+		-- ["@lsp.mod.attribute.rust"] = { fg = colors.yellow },
+		["@lsp.type.procMacro.rust"] = { fg = colors.yellow },
+		["@lsp.type.deriveHelper.rust"] = { fg = colors.yellow },
+		["@lsp.type.attributeBracket.rust"] = { fg = colors.yellow },
+		["@lsp.typemod.macro.defaultLibrary.rust"] = { fg = colors.yellow },
+	}
+
+	for key, value in pairs(groups) do
+		highlight(key, value)
+	end
+end
 
 local lsp = require("lspconfig")
 
@@ -197,19 +225,6 @@ lsp.ruby_lsp.setup({
 	end,
 })
 
-local function highlight(group, table)
-	local fg = table.fg and table.fg or "NONE"
-	local bg = table.bg and table.bg or "NONE"
-	local style = table.gui and table.gui or "NONE"
-
-	local cmd = "highlight! " .. group .. " guifg=" .. fg .. " guibg=" .. bg .. " gui=" .. style
-	vim.cmd(cmd)
-end
-
-for key, value in pairs(groups) do
-	highlight(key, value)
-end
-
 vim.cmd("highlight! Cursor guifg=#A6E3A1 guibg=#A6E3A1")
-vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
