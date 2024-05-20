@@ -190,13 +190,16 @@ if vim.g.colors_name == "catppuccin-mocha" then
 		["@variable.builtin.python"] = { fg = colors.red },
 		["@string.documentation.python"] = { fg = colors.green },
 		["@constructor.python"] = { fg = colors.teal },
+		["@variable.member.python"] = { fg = colors.text },
 
 		-- Ruby configuration
 		["@lsp.type.namespace.ruby"] = { fg = colors.teal },
 		["@lsp.type.class.ruby"] = { fg = colors.teal },
+		["@lsp.type.parameter.ruby"] = { fg = colors.yellow },
 		["@lsp.typemod.class.declaration.ruby"] = { fg = colors.teal },
 		["rubyConstant"] = { fg = colors.peach },
 		["@variable.member.ruby"] = { fg = colors.red },
+		["@variable.parameter.ruby"] = { fg = colors.yellow },
 
 		-- Rust config
 		["@lsp.type.decorator.rust"] = { fg = colors.yellow },
