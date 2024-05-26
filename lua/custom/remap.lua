@@ -80,3 +80,8 @@ vim.keymap.set("n", "<leader>cl", ":Neoconf lsp<CR>", { desc = "Open [L]SP Confi
 vim.keymap.set("n", "<leader>cr", ":LspRestart<CR>", { desc = "[R]estart LSP for current buffer" })
 
 vim.keymap.set("n", "<leader>fs", ":wa<CR>", { desc = "[S]ave file" })
+
+-- Terminal utils
+-- Create a remap that first splits the window vertically and then opens a terminal
+-- in the new window. This is useful if you want to have a terminal open to the right
+vim.keymap.set("n", "<C-t>", ":vsplit | term<CR>", { desc = "Open terminal to the [v]ertical right" })

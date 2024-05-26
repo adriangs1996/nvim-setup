@@ -164,10 +164,10 @@ if vim.g.colors_name == "catppuccin-mocha" then
 
 	local groups = {
 		-- General
-		-- ["@lsp.type"] = { fg = colors.teal },
-		-- ["@type"] = { fg = colors.teal },
-		-- ["@lsp.type.interface"] = { fg = colors.yellow },
-		-- ["@type.interface"] = { fg = colors.yellow },
+		["@lsp.type"] = { fg = colors.teal },
+		["@type"] = { fg = colors.teal },
+		["@lsp.type.interface"] = { fg = colors.yellow },
+		["@type.interface"] = { fg = colors.yellow },
 		["@type.builtin"] = { fg = colors.mauve },
 		["@variable.parameter"] = { fg = colors.flamingo },
 		["@parameter"] = { fg = colors.flamingo },
@@ -182,24 +182,24 @@ if vim.g.colors_name == "catppuccin-mocha" then
 
 		-- PYTHON configuration
 		-- ["@variable.member.python"] = { fg = colors.teal },
-		["@attribute.python"] = { fg = colors.teal },
-		["@attribute.builtin.python"] = { fg = colors.teal },
-		["@function.builtin.python"] = { fg = colors.mauve },
+		["@attribute.python"] = { fg = colors.yellow },
+		["@attribute.builtin.python"] = { fg = colors.yellow },
+		["@function.builtin.python"] = { fg = colors.yellow },
 		["@keyword.operator.python"] = { fg = colors.mauve },
 		["@type.builtin.python"] = { fg = colors.mauve },
-		-- ["@variable.builtin.python"] = { fg = colors.red },
+		["@variable.builtin.python"] = { fg = colors.red },
 		["@string.documentation.python"] = { fg = colors.green },
-		["@constructor.python"] = { fg = colors.yellow },
-		["@variable.member.python"] = { fg = colors.text },
+		["@constructor.python"] = { fg = colors.teal },
+		-- ["@variable.member.python"] = { fg = colors.text },
 
 		-- Ruby configuration
-		-- ["@lsp.type.namespace.ruby"] = { fg = colors.teal },
-		-- ["@lsp.type.class.ruby"] = { fg = colors.teal },
-		-- ["@lsp.type.parameter.ruby"] = { fg = colors.yellow },
-		-- ["@lsp.typemod.class.declaration.ruby"] = { fg = colors.teal },
+		["@lsp.type.namespace.ruby"] = { fg = colors.teal },
+		["@lsp.type.class.ruby"] = { fg = colors.teal },
+		["@lsp.type.parameter.ruby"] = { fg = colors.yellow },
+		["@lsp.typemod.class.declaration.ruby"] = { fg = colors.teal },
 		["rubyConstant"] = { fg = colors.peach },
 		-- ["@variable.member.ruby"] = { fg = colors.red },
-		-- ["@variable.parameter.ruby"] = { fg = colors.yellow },
+		["@variable.parameter.ruby"] = { fg = colors.yellow },
 
 		-- Rust config
 		["@lsp.type.decorator.rust"] = { fg = colors.yellow },
@@ -207,7 +207,7 @@ if vim.g.colors_name == "catppuccin-mocha" then
 		["@lsp.typemod.enumMember.defaultLibrary.rust"] = { fg = colors.sky },
 		["@lsp.typemod.method.defaultLibrary.rust"] = { fg = colors.sapphire },
 		["@lsp.typemod.function.defaultLibrary.rust"] = { fg = colors.sapphire },
-		-- ["@lsp.mod.attribute.rust"] = { fg = colors.yellow },
+		["@lsp.mod.attribute.rust"] = { fg = colors.yellow },
 		["@lsp.type.procMacro.rust"] = { fg = colors.yellow },
 		["@lsp.type.deriveHelper.rust"] = { fg = colors.yellow },
 		["@lsp.type.attributeBracket.rust"] = { fg = colors.yellow },
@@ -226,6 +226,10 @@ lsp.ruby_lsp.setup({
 	on_init = function(client)
 		client.server_capabilities.semanticTokensProvider = nil
 	end,
+})
+
+lsp.pyright.setup({
+	capabilities = require("cmp_nvim_lsp").default_capabilities(),
 })
 
 vim.cmd("highlight! Cursor guifg=#A6E3A1 guibg=#A6E3A1")
