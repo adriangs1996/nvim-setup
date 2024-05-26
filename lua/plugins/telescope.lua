@@ -24,15 +24,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
 	},
 	config = function()
 		require("telescope").setup({
-			-- You can put your default mappings / updates / etc. in here
-			--  All the info you're looking for is in `:help telescope.setup()`
-			--
-			-- defaults = {
-			--   mappings = {
-			--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-			--   },
-			-- },
-			-- pickers = {}
 			extensions = {
 				["ui-select"] = {
 					require("telescope.themes").get_dropdown(),
@@ -43,6 +34,11 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		-- Enable Telescope extensions if they are installed
 		pcall(require("telescope").load_extension, "fzf")
 		pcall(require("telescope").load_extension, "ui-select")
+		local loaded, _ = pcall(require("telescope").load_extension, "file_browser")
+
+		if not loaded then
+			vim.notify("Telescope file_browser not loaded.")
+		end
 
 		-- See `:help telescope.builtin`
 		local builtin = require("telescope.builtin")
@@ -57,6 +53,11 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 		vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
 		vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "[E]rrors" })
+		-- File Browsing
+		vim.keymap.set("n", "<leader>fe", ":Telescope file_browser<CR>")
+
+		-- open file_browser with the path of the current buffer
+		vim.keymap.set("n", "<leader>ff", ":Telescope file_browser path=%:p:h select_buffer=true<CR>")
 
 		-- Slightly advanced example of overriding default behavior and theme
 		vim.keymap.set("n", "<leader>/", function()

@@ -32,7 +32,7 @@ vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" }
 
 -- Configure NvimTree
 -- vim.keymap.set("n", "<leader>E", vim.cmd.NvimTreeToggle, {})
-vim.keymap.set("n", "<leader>E", ":Neotree filesystem reveal right<CR>")
+-- vim.keymap.set("n", "<leader>E", ":Neotree filesystem reveal right<CR>")
 
 -- Motion
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv") -- Move up in visual mode
