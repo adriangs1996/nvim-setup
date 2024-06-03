@@ -85,3 +85,22 @@ vim.keymap.set("n", "<leader>fs", ":wa<CR>", { desc = "[S]ave file" })
 -- Create a remap that first splits the window vertically and then opens a terminal
 -- in the new window. This is useful if you want to have a terminal open to the right
 vim.keymap.set("n", "<C-t>", ":vsplit | term<CR>", { desc = "Open terminal to the [v]ertical right" })
+
+-- Marks
+
+local letters = "abcdefghijklmnopqrstuvwxyz"
+for i = 1, #letters do
+	local letter = letters:sub(i, i)
+	vim.keymap.set("n", "." .. letter, "`" .. string.upper(letter), { desc = "Jump to mark [" .. letter .. "]" })
+	vim.keymap.set(
+		"n",
+		"m" .. letter,
+		"m" .. string.upper(letter),
+		{ desc = "Creates a mark as [" .. string.upper(letter) .. "]" }
+	)
+end
+vim.keymap.set("n", "<leader>ml", ":marks<CR>", { desc = "[L]ist al marks" })
+
+-- utils
+
+vim.keymap.set("n", "<C-f>", "f(l", { desc = "Jump inside next ()" })

@@ -56,8 +56,8 @@ vim.opt.splitbelow = true
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
-vim.opt.list = true
-vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+-- vim.opt.list = true
+-- vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
@@ -159,8 +159,10 @@ local function highlight(group, table)
 	vim.cmd(cmd)
 end
 
-if vim.g.colors_name == "catppuccin-mocha" then
-	local colors = require("catppuccin.palettes.mocha")
+vim.cmd.colorscheme("gruvbuddy")
+
+if vim.g.colors_name == "catppuccin-macchiato" then
+	local colors = require("catppuccin.palettes.macchiato")
 
 	local groups = {
 		-- General
@@ -181,16 +183,15 @@ if vim.g.colors_name == "catppuccin-mocha" then
 		["@type.builtin.c"] = { fg = colors.mauve },
 
 		-- PYTHON configuration
-		-- ["@variable.member.python"] = { fg = colors.teal },
+		["@variable.member.python"] = { fg = colors.text },
 		["@attribute.python"] = { fg = colors.yellow },
 		["@attribute.builtin.python"] = { fg = colors.yellow },
-		["@function.builtin.python"] = { fg = colors.yellow },
+		["@function.builtin.python"] = { fg = colors.sapphire },
 		["@keyword.operator.python"] = { fg = colors.mauve },
-		["@type.builtin.python"] = { fg = colors.mauve },
+		["@type.builtin.python"] = { fg = colors.yellow },
 		["@variable.builtin.python"] = { fg = colors.red },
 		["@string.documentation.python"] = { fg = colors.green },
 		["@constructor.python"] = { fg = colors.teal },
-		-- ["@variable.member.python"] = { fg = colors.text },
 
 		-- Ruby configuration
 		["@lsp.type.namespace.ruby"] = { fg = colors.teal },
@@ -200,6 +201,9 @@ if vim.g.colors_name == "catppuccin-mocha" then
 		["rubyConstant"] = { fg = colors.peach },
 		-- ["@variable.member.ruby"] = { fg = colors.red },
 		["@variable.parameter.ruby"] = { fg = colors.yellow },
+
+		-- Javascript config
+		["@lsp.type.member.javascript"] = { fg = colors.blue },
 
 		-- Rust config
 		["@lsp.type.decorator.rust"] = { fg = colors.yellow },
@@ -219,6 +223,24 @@ if vim.g.colors_name == "catppuccin-mocha" then
 	end
 end
 
+if vim.g.colors_name == "gruvbuddy" then
+	local colors = require("colorbuddy").colors
+	local Group = require("colorbuddy").Group
+	local Color = require("colorbuddy").Color
+
+	Color.new("skyblue", "#87ceeb")
+
+	-- General config
+	Group.new("@function", colors.yellow:light(), nil, nil)
+	Group.new("@keyword", colors.green, nil, nil)
+	Group.new("Special", colors.green, nil, nil)
+	Group.new("String", colors.purple:light():light(), nil, nil)
+	Group.new("@lsp.type", colors.skyblue, nil, nil)
+	Group.new("@type", colors.skyblue, nil, nil)
+	Group.new("@type.builtin", colors.green, nil, nil)
+	Group.new("@variable.builtin", colors.red:light(), nil, nil)
+end
+
 local lsp = require("lspconfig")
 
 lsp.ruby_lsp.setup({
@@ -233,5 +255,12 @@ lsp.pyright.setup({
 })
 
 vim.cmd("highlight! Cursor guifg=#A6E3A1 guibg=#A6E3A1")
-vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+
+vim.keymap.set(
+	"n",
+	"<space>k",
+	"<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>",
+	{ noremap = true, silent = true }
+)
