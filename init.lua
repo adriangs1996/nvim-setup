@@ -239,6 +239,8 @@ if vim.g.colors_name == "gruvbuddy" then
 	Group.new("@type", colors.skyblue, nil, nil)
 	Group.new("@type.builtin", colors.green, nil, nil)
 	Group.new("@variable.builtin", colors.red:light(), nil, nil)
+	Group.new("@variable.member", colors.blue, nil, nil)
+	Group.new("@property", colors.blue, nil, nil)
 end
 
 local lsp = require("lspconfig")
