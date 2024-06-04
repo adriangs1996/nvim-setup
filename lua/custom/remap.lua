@@ -104,3 +104,4 @@ vim.keymap.set("n", "<leader>ml", ":marks<CR>", { desc = "[L]ist al marks" })
 -- utils
 
 vim.keymap.set("n", "<C-f>", "f(l", { desc = "Jump inside next ()" })
+vim.keymap.set("n", "<C-a>", "<Cmd>%y+<CR>", { desc = "Copy all content" })

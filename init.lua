@@ -160,6 +160,7 @@ local function highlight(group, table)
 end
 
 vim.cmd.colorscheme("gruvbuddy")
+vim.cmd("highlight! TreesitterContext guibg=#111111")
 
 if vim.g.colors_name == "catppuccin-macchiato" then
 	local colors = require("catppuccin.palettes.macchiato")
@@ -229,18 +230,38 @@ if vim.g.colors_name == "gruvbuddy" then
 	local Color = require("colorbuddy").Color
 
 	Color.new("skyblue", "#87ceeb")
+	Color.new("codeyellow", "#dcdcaa")
 
 	-- General config
 	Group.new("@function", colors.yellow:light(), nil, nil)
+	Group.new("Function", colors.yellow:light(), nil, nil)
+	Group.new("TreesitterContext", colors.background, nil, nil)
 	Group.new("@keyword", colors.green, nil, nil)
 	Group.new("Special", colors.green, nil, nil)
-	Group.new("String", colors.purple:light():light(), nil, nil)
+	Group.new("String", colors.purple:light():light():light(), nil, nil)
 	Group.new("@lsp.type", colors.skyblue, nil, nil)
 	Group.new("@type", colors.skyblue, nil, nil)
+	Group.new("Type", colors.skyblue, nil, nil)
 	Group.new("@type.builtin", colors.green, nil, nil)
 	Group.new("@variable.builtin", colors.red:light(), nil, nil)
 	Group.new("@variable.member", colors.blue, nil, nil)
 	Group.new("@property", colors.blue, nil, nil)
+
+	-- Lua
+	Group.new("@function.call.lua", colors.yellow:light(), nil, nil)
+
+	-- Ruby conf
+	Group.new("rubyMethodName", colors.yellow:light(), nil, nil)
+	Group.new("rubyAttribute", colors.orange:light(), nil, nil)
+	Group.new("rubySymbol", colors.orange:light(), nil, nil)
+	Group.new("Constant", colors.orange, nil, nil)
+	Group.new("@variable.parameter.ruby", colors.red:light(), nil, nil)
+	Group.new("@string.special.symbol.ruby", colors.orange:light(), nil, nil)
+
+	-- Python config
+	Group.new("@constructor.python", colors.skyblue, nil, nil)
+	Group.new("@variable.parameter.python", colors.orange:light(), nil, nil)
+	Group.new("PreProc", colors.purple, nil, nil)
 end
 
 local lsp = require("lspconfig")
