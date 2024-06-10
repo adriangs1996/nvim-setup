@@ -17,6 +17,7 @@ vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
 vim.opt.relativenumber = true
+vim.opt.virtualedit = "all"
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = "a"
@@ -231,6 +232,8 @@ if vim.g.colors_name == "gruvbuddy" then
 
 	Color.new("skyblue", "#87ceeb")
 	Color.new("codeyellow", "#dcdcaa")
+	Color.new("fleetpink", "#ff69b4")
+	Color.new("superwhite", "#EFFFE4")
 
 	-- General config
 	Group.new("@function", colors.yellow:light(), nil, nil)
@@ -238,7 +241,7 @@ if vim.g.colors_name == "gruvbuddy" then
 	Group.new("TreesitterContext", colors.background, nil, nil)
 	Group.new("@keyword", colors.green, nil, nil)
 	Group.new("Special", colors.green, nil, nil)
-	Group.new("String", colors.purple:light():light():light(), nil, nil)
+	Group.new("String", colors.fleetpink:light(), nil, nil)
 	Group.new("@lsp.type", colors.skyblue, nil, nil)
 	Group.new("@type", colors.skyblue, nil, nil)
 	Group.new("Type", colors.skyblue, nil, nil)
@@ -261,12 +264,31 @@ if vim.g.colors_name == "gruvbuddy" then
 	-- Python config
 	Group.new("@constructor.python", colors.skyblue, nil, nil)
 	Group.new("@variable.parameter.python", colors.orange:light(), nil, nil)
-	Group.new("PreProc", colors.purple, nil, nil)
+	Group.new("PreProc", colors.purple:dark(), nil, nil)
+	Group.new("@attribute.builtin.python", colors.purple:dark(), nil, nil)
+	Group.new("@variable.member.python", colors.superwhite, nil, nil)
+
+	-- Ocaml config
+	Group.new("@lsp.type.namespace.ocaml", colors.skyblue, nil, nil)
+	Group.new("@lsp.type.enumMember.ocaml", colors.purple, nil, nil)
+
+	-- C/C++ config
+	Group.new("@function.call.c", colors.superwhite, nil, nil)
+	Group.new("@function.call.cpp", colors.superwhite, nil, nil)
+	Group.new("@function.macro.c", colors.purple, nil, nil)
+	Group.new("@function.macro.cpp", colors.purple, nil, nil)
+	Group.new("@module.cpp", colors.red:light(), nil, nil)
 end
 
 local lsp = require("lspconfig")
 
 lsp.ruby_lsp.setup({
+	---@param client lsp.Client
+	on_init = function(client)
+		client.server_capabilities.semanticTokensProvider = nil
+	end,
+})
+lsp.clangd.setup({
 	---@param client lsp.Client
 	on_init = function(client)
 		client.server_capabilities.semanticTokensProvider = nil
