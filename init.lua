@@ -246,9 +246,9 @@ if vim.g.colors_name == "gruvbuddy" then
 	Group.new("@keyword", colors.green:light(), nil, nil)
 	Group.new("Special", colors.green:light(), nil, nil)
 	Group.new("String", colors.fleetpink:light(), nil, nil)
-	Group.new("@lsp.type", colors.skyblue:light(), nil, nil)
-	Group.new("@type", colors.skyblue:light(), nil, nil)
-	Group.new("Type", colors.skyblue:light(), nil, nil)
+	Group.new("@lsp.type", colors.blue:light(), nil, nil)
+	Group.new("@type", colors.blue:light(), nil, nil)
+	Group.new("Type", colors.blue:light(), nil, nil)
 	Group.new("@type.builtin", colors.green:light(), nil, nil)
 	Group.new("@variable.builtin", colors.red:light(), nil, nil)
 	Group.new("@variable.member", colors.blue, nil, nil)
@@ -266,14 +266,14 @@ if vim.g.colors_name == "gruvbuddy" then
 	Group.new("@string.special.symbol.ruby", colors.orange:light(), nil, nil)
 
 	-- Python config
-	Group.new("@constructor.python", colors.skyblue:light(), nil, nil)
+	Group.new("@constructor.python", colors.blue:light(), nil, nil)
 	Group.new("@variable.parameter.python", colors.orange:light(), nil, nil)
 	Group.new("PreProc", colors.purple:dark(), nil, nil)
 	Group.new("@attribute.builtin.python", colors.purple:dark(), nil, nil)
-	-- Group.new("@variable.member.python", colors.superwhite, nil, nil)
+	Group.new("@variable.member.python", colors.superwhite, nil, nil)
 
 	-- Ocaml config
-	Group.new("@lsp.type.namespace.ocaml", colors.skyblue:light(), nil, nil)
+	Group.new("@lsp.type.namespace.ocaml", colors.blue:light(), nil, nil)
 	Group.new("@lsp.type.enumMember.ocaml", colors.purple, nil, nil)
 
 	-- C/C++ config
@@ -283,7 +283,7 @@ if vim.g.colors_name == "gruvbuddy" then
 	Group.new("@function.macro.cpp", colors.purple, nil, nil)
 	Group.new("@constructor.cpp", colors.purple, nil, nil)
 	Group.new("@module.cpp", colors.red:light(), nil, nil)
-	Group.new("@constant.cpp", colors.blue:dark(), nil, nil)
+	Group.new("@constant.cpp", colors.purple:dark(), nil, nil)
 end
 
 local lsp = require("lspconfig")
