@@ -247,12 +247,12 @@ if vim.g.colors_name == "gruvbuddy" then
 	Group.new("Special", colors.green:light(), nil, nil)
 	Group.new("String", colors.fleetpink:light(), nil, nil)
 	Group.new("@lsp.type", colors.blue:light(), nil, nil)
-	Group.new("@type", colors.blue:light(), nil, nil)
-	Group.new("Type", colors.blue:light(), nil, nil)
+	Group.new("@type", colors.blue, nil, nil)
+	Group.new("Type", colors.blue, nil, nil)
 	Group.new("@type.builtin", colors.green:light(), nil, nil)
 	Group.new("@variable.builtin", colors.red:light(), nil, nil)
-	Group.new("@variable.member", colors.blue, nil, nil)
-	Group.new("@property", colors.blue, nil, nil)
+	Group.new("@variable.member", colors.blue:light():light(), nil, nil)
+	Group.new("@property", colors.blue:light():light(), nil, nil)
 
 	-- Lua
 	Group.new("@function.call.lua", colors.codeyellow:light(), nil, nil)
@@ -266,14 +266,14 @@ if vim.g.colors_name == "gruvbuddy" then
 	Group.new("@string.special.symbol.ruby", colors.orange:light(), nil, nil)
 
 	-- Python config
-	Group.new("@constructor.python", colors.blue:light(), nil, nil)
+	Group.new("@constructor.python", colors.blue, nil, nil)
 	Group.new("@variable.parameter.python", colors.orange:light(), nil, nil)
 	Group.new("PreProc", colors.purple:dark(), nil, nil)
 	Group.new("@attribute.builtin.python", colors.purple:dark(), nil, nil)
-	Group.new("@variable.member.python", colors.superwhite, nil, nil)
+	Group.new("@variable.member.python", colors.blue:light():light(), nil, nil)
 
 	-- Ocaml config
-	Group.new("@lsp.type.namespace.ocaml", colors.blue:light(), nil, nil)
+	Group.new("@lsp.type.namespace.ocaml", colors.blue, nil, nil)
 	Group.new("@lsp.type.enumMember.ocaml", colors.purple, nil, nil)
 
 	-- C/C++ config
