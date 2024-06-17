@@ -225,7 +225,7 @@ if vim.g.colors_name == "catppuccin-macchiato" then
 	end
 end
 
-if vim.g.colors_name == "gruvbuddy" then
+if vim.g.colors_name == "gruvbuddy2" then
 	local colors = require("colorbuddy").colors
 	local Group = require("colorbuddy").Group
 	local Color = require("colorbuddy").Color
@@ -285,6 +285,29 @@ if vim.g.colors_name == "gruvbuddy" then
 	Group.new("@constructor.cpp", colors.purple, nil, nil)
 	Group.new("@module.cpp", colors.red:light(), nil, nil)
 	Group.new("@constant.cpp", colors.purple:dark(), nil, nil)
+end
+
+if vim.g.colors_name == "gruvbuddy" then
+	local colors = require("colorbuddy").colors
+	local Group = require("colorbuddy").Group
+	local Color = require("colorbuddy").Color
+
+	Color.new("background", "#282828")
+	Color.new("gray0", "#141414")
+	Color.new("vscodeblue", "#4EC9B0")
+
+	Group.new("@function", colors.yellow:light(), nil, nil)
+	Group.new("Function", colors.yellow:light(), nil, nil)
+	Group.new("TreesitterContext", colors.background, nil, nil)
+	Group.new("Type", colors.vscodeblue, nil, nil)
+	Group.new("@type", colors.vscodeblue, nil, nil)
+	Group.new("@lsp.type", colors.vscodeblue, nil, nil)
+	Group.new("@constructor", colors.vscodeblue, nil, nil)
+	Group.new("@lsp.type.namespace.ocaml", colors.vscodeblue, nil, nil)
+	Group.new("@type.builtin", colors.violet, nil, nil)
+	Group.new("@variable.member", colors.blue, nil, nil)
+	Group.new("@variable.builtin", colors.red:light():light(), nil, nil)
+	Group.new("@lsp.type.enumMember.ocaml", colors.blue, nil, nil)
 end
 
 local lsp = require("lspconfig")
