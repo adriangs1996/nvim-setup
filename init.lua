@@ -233,7 +233,8 @@ if vim.g.colors_name == "gruvbuddy" then
 	Color.new("background", "#282828")
 	Color.new("gray0", "#1e1F22")
 
-	Color.new("skyblue", "#56A8F5")
+	-- Color.new("skyblue", "#56A8F5")
+	Color.new("skyblue", "#81A2BE")
 	Color.new("codeyellow", "#DCE775")
 	Color.new("fleetpink", "#ff69b4")
 	Color.new("superwhite", "#E8FFF1")
@@ -246,9 +247,9 @@ if vim.g.colors_name == "gruvbuddy" then
 	Group.new("@keyword", colors.green:light(), nil, nil)
 	Group.new("Special", colors.green:light(), nil, nil)
 	Group.new("String", colors.fleetpink:light(), nil, nil)
-	Group.new("@lsp.type", colors.blue:light(), nil, nil)
-	Group.new("@type", colors.blue, nil, nil)
-	Group.new("Type", colors.blue, nil, nil)
+	Group.new("@lsp.type", colors.skyblue:light(), nil, nil)
+	Group.new("@type", colors.skyblue:light(), nil, nil)
+	Group.new("Type", colors.skyblue:light(), nil, nil)
 	Group.new("@type.builtin", colors.green:light(), nil, nil)
 	Group.new("@variable.builtin", colors.red:light(), nil, nil)
 	Group.new("@variable.member", colors.blue:light():light(), nil, nil)
@@ -266,7 +267,7 @@ if vim.g.colors_name == "gruvbuddy" then
 	Group.new("@string.special.symbol.ruby", colors.orange:light(), nil, nil)
 
 	-- Python config
-	Group.new("@constructor.python", colors.blue, nil, nil)
+	Group.new("@constructor.python", colors.skyblue:light(), nil, nil)
 	Group.new("@variable.parameter.python", colors.orange:light(), nil, nil)
 	Group.new("PreProc", colors.purple:dark(), nil, nil)
 	Group.new("@attribute.builtin.python", colors.purple:dark(), nil, nil)
