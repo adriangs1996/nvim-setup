@@ -293,7 +293,7 @@ if vim.g.colors_name == "gruvbuddy" then
 	local Color = require("colorbuddy").Color
 
 	Color.new("background", "#282828")
-	Color.new("gray0", "#141414")
+	Color.new("gray0", "#181818")
 	Color.new("vscodeblue", "#4EC9B0")
 
 	Group.new("@function", colors.yellow:light(), nil, nil)
@@ -308,25 +308,16 @@ if vim.g.colors_name == "gruvbuddy" then
 	Group.new("@variable.member", colors.blue, nil, nil)
 	Group.new("@variable.builtin", colors.red:light():light(), nil, nil)
 	Group.new("@lsp.type.enumMember.ocaml", colors.blue, nil, nil)
+	-- Group.new("@keyword.directive.define", colors.magenta:light():light(), nil, nil)
 end
 
 local lsp = require("lspconfig")
 
-lsp.ruby_lsp.setup({
-	---@param client lsp.Client
-	on_init = function(client)
-		client.server_capabilities.semanticTokensProvider = nil
-	end,
-})
 lsp.clangd.setup({
 	---@param client lsp.Client
 	on_init = function(client)
 		client.server_capabilities.semanticTokensProvider = nil
 	end,
-})
-
-lsp.pyright.setup({
-	capabilities = require("cmp_nvim_lsp").default_capabilities(),
 })
 
 vim.cmd("highlight! Cursor guifg=#A6E3A1 guibg=#A6E3A1")
