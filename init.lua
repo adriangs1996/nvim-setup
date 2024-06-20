@@ -288,16 +288,28 @@ if vim.g.colors_name == "gruvbuddy2" then
 end
 
 if vim.g.colors_name == "gruvbuddy" then
-	local colors = require("colorbuddy").colors
-	local Group = require("colorbuddy").Group
-	local Color = require("colorbuddy").Color
+	local colorbuddy = require("colorbuddy")
+	colorbuddy.colorscheme("gruvbuddy")
+	local colors = colorbuddy.colors
+	local Group = colorbuddy.Group
+	local Color = colorbuddy.Color
+	local g = colorbuddy.groups
 
 	Color.new("background", "#282828")
 	Color.new("gray0", "#181818")
 	Color.new("vscodeblue", "#4EC9B0")
+	Color.new("magenta", "#BDAFE5")
+	Color.new("interface", "#B8D7A3")
 
-	Group.new("@function", colors.yellow:light(), nil, nil)
-	Group.new("Function", colors.yellow:light(), nil, nil)
+	-- Group.new("@attribute.python", colors.magenta, nil, nil)
+	-- NOTE: a note
+	vim.cmd("hi! link @attribute.python TodoFgNOTE")
+	vim.cmd("hi! link @attribute.builtin.python TodoFgNOTE")
+	Group.new("Repeat", g.Include, nil, nil)
+	-- Group.new("@keyword.return", g.Include, nil, nil)
+	Group.new("Conditional", g.Include, nil, nil)
+	Group.new("@function", colors.lightyellow, nil, nil)
+	Group.new("Function", colors.lightyellow, nil, nil)
 	Group.new("TreesitterContext", colors.background, nil, nil)
 	Group.new("Type", colors.vscodeblue, nil, nil)
 	Group.new("@type", colors.vscodeblue, nil, nil)
@@ -309,6 +321,8 @@ if vim.g.colors_name == "gruvbuddy" then
 	Group.new("@variable.builtin", colors.red:light():light(), nil, nil)
 	Group.new("@lsp.type.enumMember.ocaml", colors.blue, nil, nil)
 	-- Group.new("@keyword.directive.define", colors.magenta:light():light(), nil, nil)
+	Group.new("@lsp.type.enumMember", colors.interface, nil, nil)
+	Group.new("@lsp.type.enumMember.ocaml", colors.interface, nil, nil)
 end
 
 local lsp = require("lspconfig")
