@@ -1,3 +1,36 @@
+function f(str)
+	local outer_env = _ENV
+	return (
+		str:gsub("%b{}", function(block)
+			local code = block:match("{(.*)}")
+			local exp_env = {}
+			setmetatable(exp_env, {
+				__index = function(_, k)
+					local stack_level = 5
+					while debug.getinfo(stack_level, "") ~= nil do
+						local i = 1
+						repeat
+							local name, value = debug.getlocal(stack_level, i)
+							if name == k then
+								return value
+							end
+							i = i + 1
+						until name == nil
+						stack_level = stack_level + 1
+					end
+					return rawget(outer_env, k)
+				end,
+			})
+			local fn, err = load("return " .. code, "expression `" .. code .. "`", "t", exp_env)
+			if fn then
+				return tostring(fn())
+			else
+				error(err, 0)
+			end
+		end)
+	)
+end
+
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -195,39 +228,47 @@ if vim.g.colors_name == "gruvbuddy" then
 	Color.new("vscodeblue", "#4EC9B0")
 	Color.new("magenta", "#BDAFE5")
 	Color.new("interface", "#B8D7A3")
-	Color.new("mpurple", "#C191FF")
+	Color.new("mpurple", "#AA22FF")
 	Color.new("mblue", "#66C3CC")
-	Color.new("mgreen", "#39CC9B")
+	Color.new("mgreen", "#008000")
 	Color.new("mbrown", "#C9A26D")
 	Color.new("mpink", "#ED94C0")
 	Color.new("mmidpink", "#E1BFFF")
-	Color.new("mbluedark", "#6C95EB")
+	Color.new("mbluedark", "#0000FF")
+	Color.new("mred", "#BC2121")
 
-	Group.new("Include", colors.mbluedark, nil, nil)
-	Group.new("Repeat", colors.mbluedark, nil, nil)
+	Group.new("Include", colors.mgreen, nil, nil)
+	Group.new("Repeat", colors.mgreen, nil, nil)
 	Group.new("@string.special.symbol.ruby", colors.mpurple, nil, s.italic)
 	Group.new("rubySymbol", colors.mpink, nil, s.none)
-	Group.new("@tag", colors.mbluedark, nil, nil)
-	Group.new("Tag", colors.mbluedark, nil, nil)
-	Group.new("Keyword", colors.mbluedark, nil, nil)
-	Group.new("@keyword", colors.mbluedark, nil, nil)
+	Group.new("@tag", colors.mgreen, nil, nil)
+	Group.new("Tag", colors.mgreen, nil, nil)
+	Group.new("Keyword", colors.mgreen, nil, nil)
+	Group.new("@keyword", colors.mgreen, nil, nil)
 	Group.new("@keyword.modifier.ruby", colors.lightyellow, nil, nil)
-	Group.new("@type.builtin", colors.mbluedark, nil, nil)
-	Group.new("@type.builtin.python", colors.mbluedark, nil, nil)
+	Group.new("@type.builtin", colors.mgreen, nil, nil)
+	Group.new("@type.builtin.python", colors.mgreen, nil, nil)
 	Group.new("@variable.member", colors.superwhite, nil, nil)
+	Group.new("@variable.builtin.python", colors.mgreen, nil, nil)
 	Group.new("@property", colors.superwhite, nil, nil)
-	Group.new("@function", colors.mgreen, nil, nil)
-	Group.new("Function", colors.mgreen, nil, nil)
-	Group.new("String", colors.mpink, nil, nil)
-	Group.new("Type", colors.mpurple, nil, nil)
-	Group.new("@type", colors.mpurple, nil, nil)
-	Group.new("@lsp.type", colors.mpurple, nil, nil)
-	Group.new("@constructor", colors.mpurple, nil, nil)
+	Group.new("@function", colors.mbluedark, nil, nil)
+	Group.new("Function", colors.mbluedark, nil, nil)
+	Group.new("String", colors.mred:dark(), nil, nil)
+	Group.new("Type", colors.mpurple:light(), nil, nil)
+	Group.new("@type", colors.mpurple:light(), nil, nil)
+	Group.new("@lsp.type", colors.mpurple:light(), nil, nil)
+	Group.new("@constructor", colors.mpurple:light(), nil, nil)
 	Group.new("@lsp.type.namespace.ocaml", colors.mpurple, nil, nil)
 	Group.new("@attribute.builtin.python", colors.lightyellow, nil, nil)
 	Group.new("@attribute.python", colors.lightyellow, nil, nil)
 	Group.new("@attribute.builtin", colors.lightyellow, nil, nil)
 	Group.new("@attribute", colors.lightyellow, nil, nil)
+	Group.new("@variable.parameter", colors.orange:light(), nil, nil)
+	Group.new("@module", colors.blue:light(), nil, nil)
+	Group.new("@keyword.import.cpp", colors.lightyellow, nil, nil)
+	Group.new("@keyword.import.c", colors.lightyellow, nil, nil)
+	Group.new("@function.macro.c", colors.lightyellow, nil, nil)
+	Group.new("@function.macro.cpp", colors.lightyellow, nil, nil)
 
 	Group.new("TreesitterContext", colors.background, nil, nil)
 	Group.new("@variable.builtin", colors.red:light(), nil, nil)
