@@ -239,10 +239,10 @@ if vim.g.colors_name == "kanagawa" then
 		["@constructor"] = { fg = palette.cyanlight },
 
 		-- Yellow light groups
-		["@attribute"] = { fg = palette.yellowlight },
-		["@attribute.builtin"] = { fg = palette.yellowlight },
-		["@attribute.python"] = { fg = palette.yellowlight },
-		["@attribute.builtin.python"] = { fg = palette.yellowlight },
+		["@attribute"] = { fg = palette.yellow },
+		["@attribute.builtin"] = { fg = palette.yellow },
+		["@attribute.python"] = { fg = palette.yellow },
+		["@attribute.builtin.python"] = { fg = palette.yellow },
 	}
 
 	for group, colors in pairs(groups) do
