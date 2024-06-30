@@ -193,7 +193,7 @@ local function highlight(group, table)
 	vim.cmd(cmd)
 end
 
-vim.cmd.colorscheme("gruvbuddy")
+vim.cmd.colorscheme("kanagawa-dragon")
 local lsp = require("lspconfig")
 
 lsp.clangd.setup({
@@ -214,6 +214,42 @@ vim.keymap.set(
 	{ noremap = true, silent = true }
 )
 
+if vim.g.colors_name == "kanagawa" then
+	local palette = {
+		green = "#8a9a7b",
+		greenlight = "#87a987",
+		blue = "# 8ba4b0",
+		bluelight = "#7fb4ca",
+		yellow = "#c4b28a",
+		yellowlight = "#e6c384",
+		magenta = "#a292a3",
+		violet = "#938aa9",
+		cyan = "#8ea4a2",
+		cyanlight = "#7aa89f",
+		red = "#c4746e",
+		redlight = "#e46876",
+		orange = "#b6927b",
+		orangedimmed = "#b98d7b",
+	}
+
+	local groups = {
+		-- Cyanlight groups
+		["@type"] = { fg = palette.cyanlight },
+		["Type"] = { fg = palette.cyanlight },
+		["@constructor"] = { fg = palette.cyanlight },
+
+		-- Yellow light groups
+		["@attribute"] = { fg = palette.yellowlight },
+		["@attribute.builtin"] = { fg = palette.yellowlight },
+		["@attribute.python"] = { fg = palette.yellowlight },
+		["@attribute.builtin.python"] = { fg = palette.yellowlight },
+	}
+
+	for group, colors in pairs(groups) do
+		highlight(group, colors)
+	end
+end
+
 if vim.g.colors_name == "gruvbuddy" then
 	local colorbuddy = require("colorbuddy")
 	colorbuddy.colorscheme("gruvbuddy")
@@ -226,11 +262,13 @@ if vim.g.colors_name == "gruvbuddy" then
 	Color.new("background", "#282828")
 	Color.new("gray0", "#131313")
 	Color.new("vscodeblue", "#4EC9B0")
+	-- Color.new("mgreen", "#4EC9B0")
 	Color.new("magenta", "#BDAFE5")
 	Color.new("interface", "#B8D7A3")
 	Color.new("mpurple", "#AA22FF")
 	Color.new("mblue", "#66C3CC")
-	Color.new("mgreen", "#008000")
+	-- Color.new("mgreen", "#008000")
+	Color.new("mgreen", "#6CC050")
 	Color.new("mbrown", "#C9A26D")
 	Color.new("mpink", "#ED94C0")
 	Color.new("mmidpink", "#E1BFFF")
@@ -258,6 +296,7 @@ if vim.g.colors_name == "gruvbuddy" then
 	Group.new("@type", colors.mpurple:light(), nil, nil)
 	Group.new("@lsp.type", colors.mpurple:light(), nil, nil)
 	Group.new("@constructor", colors.mpurple:light(), nil, nil)
+	-- Group.new("@constructor.python", colors.vscodeblue, nil, nil)
 	Group.new("@lsp.type.namespace.ocaml", colors.mpurple, nil, nil)
 	Group.new("@attribute.builtin.python", colors.lightyellow, nil, nil)
 	Group.new("@attribute.python", colors.lightyellow, nil, nil)
