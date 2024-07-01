@@ -218,7 +218,7 @@ if vim.g.colors_name == "kanagawa" then
 	local palette = {
 		green = "#8a9a7b",
 		greenlight = "#87a987",
-		blue = "# 8ba4b0",
+		blue = "#8ba4b0",
 		bluelight = "#7fb4ca",
 		yellow = "#c4b28a",
 		yellowlight = "#e6c384",
@@ -239,15 +239,27 @@ if vim.g.colors_name == "kanagawa" then
 		["@constructor"] = { fg = palette.cyanlight },
 
 		-- Yellow light groups
-		["@attribute"] = { fg = palette.yellow },
-		["@attribute.builtin"] = { fg = palette.yellow },
-		["@attribute.python"] = { fg = palette.yellow },
-		["@attribute.builtin.python"] = { fg = palette.yellow },
+		["@attribute"] = { fg = palette.yellowlight },
+		["@attribute.builtin"] = { fg = palette.yellowlight },
+		["@attribute.python"] = { fg = palette.yellowlight },
+		["@attribute.builtin.python"] = { fg = palette.yellowlight },
+
+		-- magenta groups
+		-- ["Keyword"] = { fg = palette.magenta },
+		-- ["@keyword"] = { fg = palette.magenta },
+		-- ["@keyword.exception"] = { fg = palette.magenta },
+		-- ["@keyword.import"] = { fg = palette.magenta },
+
+		-- Blue groups
+		["@variable.builtin"] = { fg = palette.violet },
 	}
 
 	for group, colors in pairs(groups) do
 		highlight(group, colors)
 	end
+
+	-- Links color groups
+	vim.cmd("highlight! link @keyword.return Keyword")
 end
 
 if vim.g.colors_name == "gruvbuddy" then
