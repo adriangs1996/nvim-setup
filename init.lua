@@ -193,7 +193,8 @@ local function highlight(group, table)
 	vim.cmd(cmd)
 end
 
-vim.cmd.colorscheme("kanagawa-dragon")
+-- vim.cmd.colorscheme("kanagawa-dragon")
+vim.cmd.colorscheme("nord")
 local lsp = require("lspconfig")
 
 lsp.clangd.setup({
@@ -213,6 +214,54 @@ vim.keymap.set(
 	"<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>",
 	{ noremap = true, silent = true }
 )
+
+if vim.g.colors_name == "nord" then
+	local palette = {
+		aurora = {
+			red = { fg = "#BF616A" },
+			orange = { fg = "#D08770" },
+			yellow = { fg = "#EBCB8B" },
+			green = { fg = "#A3BE8C" },
+			purple = { fg = "#B48EAD" },
+		},
+
+		snowstorm = {
+			white = { fg = "#D8DEE9" },
+			gray = { fg = "#4C566A" },
+			black = { fg = "#2E3440" },
+		},
+
+		frost = {
+			blue = { fg = "#5E81AC" },
+			cyan = { fg = "#88C0D0" },
+			teal = { fg = "#8FBCBB" },
+			lightblue = { fg = "#81A1C1" },
+		},
+	}
+
+	local groups = {
+		["@type"] = palette.frost.teal,
+		["@constructor"] = palette.frost.teal,
+		["Type"] = palette.frost.teal,
+
+		["@attribute"] = palette.aurora.orange,
+		["@attribute.builtin"] = palette.aurora.orange,
+
+		["@variable.builtin"] = palette.aurora.yellow,
+		["@type.builtin"] = palette.aurora.yellow,
+		["@function.builtin"] = palette.aurora.yellow,
+
+		["@property"] = palette.frost.blue,
+		["@variable.parameter"] = palette.frost.blue,
+
+		["@tag"] = palette.frost.cyan,
+		["Tag"] = palette.frost.cyan,
+	}
+
+	for group, colors in pairs(groups) do
+		highlight(group, colors)
+	end
+end
 
 if vim.g.colors_name == "kanagawa" then
 	local palette = {
@@ -260,6 +309,7 @@ if vim.g.colors_name == "kanagawa" then
 
 	-- Links color groups
 	vim.cmd("highlight! link @keyword.return Keyword")
+	vim.cmd("highlight! link @keyword.exception Keyword")
 end
 
 if vim.g.colors_name == "gruvbuddy" then
