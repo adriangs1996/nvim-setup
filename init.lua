@@ -215,6 +215,10 @@ vim.keymap.set(
 	{ noremap = true, silent = true }
 )
 
+local function link(group, link)
+	vim.cmd("highlight! link " .. group .. " " .. link)
+end
+
 if vim.g.colors_name == "nord" then
 	local palette = {
 		aurora = {
@@ -223,6 +227,8 @@ if vim.g.colors_name == "nord" then
 			yellow = { fg = "#EBCB8B" },
 			green = { fg = "#A3BE8C" },
 			purple = { fg = "#B48EAD" },
+			pink = { fg = "#C77DBB" },
+			lightred = { fg = "#EBA0AC" },
 		},
 
 		snowstorm = {
@@ -243,16 +249,22 @@ if vim.g.colors_name == "nord" then
 		["@type"] = palette.frost.teal,
 		["@constructor"] = palette.frost.teal,
 		["Type"] = palette.frost.teal,
+		["@lsp.type"] = palette.frost.teal,
+		["@lsp.typemod.class.declaration"] = palette.frost.teal,
+		["@lsp.type.namespace.ruby"] = palette.frost.teal,
 
 		["@attribute"] = palette.aurora.orange,
 		["@attribute.builtin"] = palette.aurora.orange,
+		["@string.special.symbol.ruby"] = palette.aurora.orange,
 
 		["@variable.builtin"] = palette.aurora.yellow,
 		["@type.builtin"] = palette.aurora.yellow,
 		["@function.builtin"] = palette.aurora.yellow,
+		["@keyword.modifier.ruby"] = palette.aurora.yellow,
 
 		["@property"] = palette.frost.blue,
-		["@variable.parameter"] = palette.frost.blue,
+		["@variable.parameter"] = palette.aurora.lightred,
+		["@lsp.mod.defaultLibrary"] = palette.aurora.lightred,
 
 		["@tag"] = palette.frost.cyan,
 		["Tag"] = palette.frost.cyan,
@@ -261,6 +273,8 @@ if vim.g.colors_name == "nord" then
 	for group, colors in pairs(groups) do
 		highlight(group, colors)
 	end
+
+	link("@keyword.function", "@keyword")
 end
 
 if vim.g.colors_name == "kanagawa" then
