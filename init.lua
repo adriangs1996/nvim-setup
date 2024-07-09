@@ -193,8 +193,8 @@ local function highlight(group, table)
 	vim.cmd(cmd)
 end
 
--- vim.cmd.colorscheme("kanagawa-dragon")
-vim.cmd.colorscheme("nord")
+vim.cmd.colorscheme("kanagawa")
+-- vim.cmd.colorscheme("nord")
 local lsp = require("lspconfig")
 
 lsp.clangd.setup({
@@ -279,20 +279,25 @@ end
 
 if vim.g.colors_name == "kanagawa" then
 	local palette = {
+		grass = "#98BB6C",
+		orangewave = "#FFA066",
 		green = "#8a9a7b",
 		greenlight = "#87a987",
 		blue = "#8ba4b0",
-		bluelight = "#7fb4ca",
+		-- bluelight = "#7fb4ca",
+		bluelight = "#81A1C1",
 		yellow = "#c4b28a",
 		yellowlight = "#e6c384",
 		magenta = "#a292a3",
 		violet = "#938aa9",
+		purple = "#957fb8",
 		cyan = "#8ea4a2",
 		cyanlight = "#7aa89f",
 		red = "#c4746e",
 		redlight = "#e46876",
 		orange = "#b6927b",
 		orangedimmed = "#b98d7b",
+		teal = "#8FBCBB",
 	}
 
 	local groups = {
@@ -301,11 +306,15 @@ if vim.g.colors_name == "kanagawa" then
 		["Type"] = { fg = palette.cyanlight },
 		["@constructor"] = { fg = palette.cyanlight },
 
+		-- ["@type"] = { fg = palette.teal },
+		-- ["Type"] = { fg = palette.teal },
+		-- ["@constructor"] = { fg = palette.teal },
+
 		-- Yellow light groups
-		["@attribute"] = { fg = palette.yellowlight },
-		["@attribute.builtin"] = { fg = palette.yellowlight },
-		["@attribute.python"] = { fg = palette.yellowlight },
-		["@attribute.builtin.python"] = { fg = palette.yellowlight },
+		["@attribute"] = { fg = palette.orangewave },
+		["@attribute.builtin"] = { fg = palette.orangewave },
+		["@attribute.python"] = { fg = palette.orangewave },
+		["@attribute.builtin.python"] = { fg = palette.orangewave },
 
 		-- magenta groups
 		-- ["Keyword"] = { fg = palette.magenta },
@@ -315,6 +324,12 @@ if vim.g.colors_name == "kanagawa" then
 
 		-- Blue groups
 		["@variable.builtin"] = { fg = palette.violet },
+
+		["Function"] = { fg = palette.bluelight },
+		-- ["Keyword"] = { fg = palette.purple },
+
+		["@type.builtin"] = { fg = palette.purple },
+		-- ["@keyword.operator"] = { fg = palette.red },
 	}
 
 	for group, colors in pairs(groups) do
@@ -322,8 +337,10 @@ if vim.g.colors_name == "kanagawa" then
 	end
 
 	-- Links color groups
-	vim.cmd("highlight! link @keyword.return Keyword")
-	vim.cmd("highlight! link @keyword.exception Keyword")
+	link("@keyword.return", "Keyword")
+	link("@keyword.exception", "Keyword")
+	link("@keyword.operator", "PreProc")
+	link("@variable.parameter", "Number")
 end
 
 if vim.g.colors_name == "gruvbuddy" then
@@ -335,8 +352,8 @@ if vim.g.colors_name == "gruvbuddy" then
 	local g = colorbuddy.groups
 	local s = colorbuddy.styles
 
-	Color.new("background", "#282828")
-	Color.new("gray0", "#131313")
+	-- Color.new("background", "#282828")
+	-- Color.new("gray0", "#131313")
 	Color.new("vscodeblue", "#4EC9B0")
 	-- Color.new("mgreen", "#4EC9B0")
 	Color.new("magenta", "#BDAFE5")
