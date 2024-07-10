@@ -193,8 +193,6 @@ local function highlight(group, table)
 	vim.cmd(cmd)
 end
 
-vim.cmd.colorscheme("kanagawa")
--- vim.cmd.colorscheme("nord")
 local lsp = require("lspconfig")
 
 lsp.clangd.setup({
@@ -277,70 +275,66 @@ if vim.g.colors_name == "nord" then
 	link("@keyword.function", "@keyword")
 end
 
+vim.cmd.colorscheme("kanagawa-dragon")
 if vim.g.colors_name == "kanagawa" then
-	local palette = {
-		grass = "#98BB6C",
-		orangewave = "#FFA066",
-		green = "#8a9a7b",
-		greenlight = "#87a987",
-		blue = "#8ba4b0",
-		-- bluelight = "#7fb4ca",
-		bluelight = "#81A1C1",
-		yellow = "#c4b28a",
-		yellowlight = "#e6c384",
-		magenta = "#a292a3",
-		violet = "#938aa9",
-		purple = "#957fb8",
-		cyan = "#8ea4a2",
-		cyanlight = "#7aa89f",
-		red = "#c4746e",
-		redlight = "#e46876",
-		orange = "#b6927b",
-		orangedimmed = "#b98d7b",
-		teal = "#8FBCBB",
+	local colors = require("kanagawa.colors").setup({ theme = "wave" }).palette
+	local theme = {
+		dragon = {
+			red = { fg = colors.dragonRed },
+			teal = { fg = colors.dragonTeal },
+			violet = { fg = colors.dragonViolet },
+			lightblue = { fg = colors.dragonAqua },
+		},
+		wave = {
+			warmwhite = { fg = colors.fujiWhite },
+			darkwhite = { fg = colors.oldWhite },
+			green = { fg = colors.autumnGreen },
+			lightgreen = { fg = colors.springGreen },
+			blue = { fg = colors.crystalBlue },
+			lightblue = { fg = colors.springBlue },
+			teal = { fg = colors.waveAqua2 },
+			yellow = { fg = colors.boatYellow2 },
+			lightyellow = { fg = colors.carpYellow },
+			orange = { fg = colors.surimiOrange },
+			red = { fg = colors.peachRed },
+			softred = { fg = colors.waveRed },
+			pink = { fg = colors.sakuraPink },
+			violet = { fg = colors.oniViolet },
+			purple = { fg = colors.oniViolet2 },
+		},
 	}
 
 	local groups = {
-		-- Cyanlight groups
-		["@type"] = { fg = palette.cyanlight },
-		["Type"] = { fg = palette.cyanlight },
-		["@constructor"] = { fg = palette.cyanlight },
+		["@variable"] = theme.wave.warmwhite,
 
-		-- ["@type"] = { fg = palette.teal },
-		-- ["Type"] = { fg = palette.teal },
-		-- ["@constructor"] = { fg = palette.teal },
+		["@type"] = theme.wave.teal,
+		["Type"] = theme.wave.teal,
+		["@constructor"] = theme.wave.teal,
 
-		-- Yellow light groups
-		["@attribute"] = { fg = palette.orangewave },
-		["@attribute.builtin"] = { fg = palette.orangewave },
-		["@attribute.python"] = { fg = palette.orangewave },
-		["@attribute.builtin.python"] = { fg = palette.orangewave },
+		["@attribute"] = theme.wave.orange,
+		["@attribute.builtin"] = theme.wave.orange,
+		["@attribute.python"] = theme.wave.orange,
+		["@attribute.builtin.python"] = theme.wave.orange,
 
-		-- magenta groups
-		-- ["Keyword"] = { fg = palette.magenta },
-		-- ["@keyword"] = { fg = palette.magenta },
-		-- ["@keyword.exception"] = { fg = palette.magenta },
-		-- ["@keyword.import"] = { fg = palette.magenta },
+		["@variable.builtin"] = theme.dragon.red,
 
-		-- Blue groups
-		["@variable.builtin"] = { fg = palette.violet },
+		["Identifier"] = theme.dragon.violet,
+		["@variable.member"] = theme.dragon.violet,
+		["@property"] = theme.dragon.violet,
+		["Function"] = theme.wave.lightgreen,
+		["Keyword"] = theme.wave.lightblue,
+		["@keyword.operator"] = theme.wave.lightblue,
+		["String"] = theme.wave.yellow,
+		["@keyword.return"] = theme.dragon.red,
 
-		["Function"] = { fg = palette.bluelight },
-		-- ["Keyword"] = { fg = palette.purple },
-
-		["@type.builtin"] = { fg = palette.purple },
-		-- ["@keyword.operator"] = { fg = palette.red },
+		["@type.builtin"] = theme.wave.violet,
+		["Special"] = theme.wave.pink,
+		["@variable.parameter"] = theme.wave.pink,
 	}
 
 	for group, colors in pairs(groups) do
 		highlight(group, colors)
 	end
-
-	-- Links color groups
-	link("@keyword.return", "Keyword")
-	link("@keyword.exception", "Keyword")
-	link("@keyword.operator", "PreProc")
-	link("@variable.parameter", "Number")
 end
 
 if vim.g.colors_name == "gruvbuddy" then
