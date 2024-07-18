@@ -307,9 +307,10 @@ if vim.g.colors_name == "kanagawa" then
 	local groups = {
 		["@variable"] = theme.wave.warmwhite,
 
-		["@type"] = theme.wave.teal,
-		["Type"] = theme.wave.teal,
-		["@constructor"] = theme.wave.teal,
+		["@type"] = theme.wave.lightblue,
+		["Type"] = theme.wave.lightblue,
+		["@constructor"] = theme.wave.lightblue,
+		["@type.builtin"] = theme.wave.lightblue,
 
 		["@attribute"] = theme.wave.orange,
 		["@attribute.builtin"] = theme.wave.orange,
@@ -317,17 +318,17 @@ if vim.g.colors_name == "kanagawa" then
 		["@attribute.builtin.python"] = theme.wave.orange,
 
 		["@variable.builtin"] = theme.dragon.red,
+		["@function.builtin"] = theme.wave.violet,
 
 		["Identifier"] = theme.dragon.violet,
 		["@variable.member"] = theme.dragon.violet,
 		["@property"] = theme.dragon.violet,
 		["Function"] = theme.wave.lightgreen,
-		["Keyword"] = theme.wave.lightblue,
-		["@keyword.operator"] = theme.wave.lightblue,
+		["Keyword"] = theme.dragon.red,
+		["@keyword.operator"] = theme.dragon.red,
 		["String"] = theme.wave.yellow,
 		["@keyword.return"] = theme.dragon.red,
 
-		["@type.builtin"] = theme.wave.violet,
 		["Special"] = theme.wave.pink,
 		["@variable.parameter"] = theme.wave.pink,
 	}
