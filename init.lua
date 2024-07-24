@@ -307,10 +307,10 @@ if vim.g.colors_name == "kanagawa" then
 	local groups = {
 		["@variable"] = theme.wave.warmwhite,
 
-		["@type"] = theme.wave.lightblue,
-		["Type"] = theme.wave.lightblue,
-		["@constructor"] = theme.wave.lightblue,
-		["@type.builtin"] = theme.wave.lightblue,
+		["@type"] = theme.wave.teal,
+		["Type"] = theme.wave.teal,
+		["@constructor"] = theme.wave.teal,
+		["@type.builtin"] = theme.dragon.red,
 
 		["@attribute"] = theme.wave.orange,
 		["@attribute.builtin"] = theme.wave.orange,
