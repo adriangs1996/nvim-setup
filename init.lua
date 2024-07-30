@@ -294,6 +294,7 @@ if vim.g.colors_name == "kanagawa" then
 			blue = { fg = colors.crystalBlue },
 			lightblue = { fg = colors.springBlue },
 			teal = { fg = colors.waveAqua2 },
+			myell = { fg = "#E6C384" },
 			yellow = { fg = colors.boatYellow2 },
 			lightyellow = { fg = colors.carpYellow },
 			orange = { fg = colors.surimiOrange },
@@ -334,7 +335,7 @@ if vim.g.colors_name == "kanagawa" then
 		["Function"] = theme.dp.lightgreen,
 		["Keyword"] = theme.wave.softred,
 		["@keyword.operator"] = theme.wave.softred,
-		["String"] = theme.wave.pink,
+		["String"] = theme.wave.myell,
 		["@keyword.return"] = theme.wave.softred,
 		["@keyword.exception"] = theme.wave.softred,
 
