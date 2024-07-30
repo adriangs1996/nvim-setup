@@ -275,7 +275,7 @@ if vim.g.colors_name == "nord" then
 	link("@keyword.function", "@keyword")
 end
 
-vim.cmd.colorscheme("kanagawa-dragon")
+vim.cmd.colorscheme("kanagawa")
 if vim.g.colors_name == "kanagawa" then
 	local colors = require("kanagawa.colors").setup({ theme = "wave" }).palette
 	local theme = {
@@ -284,6 +284,7 @@ if vim.g.colors_name == "kanagawa" then
 			teal = { fg = colors.dragonTeal },
 			violet = { fg = colors.dragonViolet },
 			lightblue = { fg = colors.dragonAqua },
+			testblue = { fg = "#499EFF" },
 		},
 		wave = {
 			warmwhite = { fg = colors.fujiWhite },
@@ -302,35 +303,43 @@ if vim.g.colors_name == "kanagawa" then
 			violet = { fg = colors.oniViolet },
 			purple = { fg = colors.oniViolet2 },
 		},
+
+		dp = {
+			lightgreen = { fg = "#8aff80" },
+			teal = { fg = "#80ffea" },
+			grayblue = { fg = "#658594" },
+			softyellow = { fg = "#ffca80", gui = "italic" },
+		},
 	}
 
 	local groups = {
 		["@variable"] = theme.wave.warmwhite,
 
-		["@type"] = theme.wave.teal,
-		["Type"] = theme.wave.teal,
-		["@constructor"] = theme.wave.teal,
-		["@type.builtin"] = theme.dragon.red,
+		["@type"] = theme.dp.teal,
+		["Type"] = theme.dp.teal,
+		["@constructor"] = theme.dp.teal,
+		["@type.builtin"] = theme.wave.softred,
 
 		["@attribute"] = theme.wave.orange,
 		["@attribute.builtin"] = theme.wave.orange,
 		["@attribute.python"] = theme.wave.orange,
 		["@attribute.builtin.python"] = theme.wave.orange,
 
-		["@variable.builtin"] = theme.dragon.red,
+		["@variable.builtin"] = theme.wave.softred,
 		["@function.builtin"] = theme.wave.violet,
 
 		["Identifier"] = theme.dragon.violet,
 		["@variable.member"] = theme.dragon.violet,
 		["@property"] = theme.dragon.violet,
-		["Function"] = theme.wave.lightgreen,
-		["Keyword"] = theme.dragon.red,
-		["@keyword.operator"] = theme.dragon.red,
-		["String"] = theme.wave.yellow,
-		["@keyword.return"] = theme.dragon.red,
+		["Function"] = theme.dp.lightgreen,
+		["Keyword"] = theme.wave.softred,
+		["@keyword.operator"] = theme.wave.softred,
+		["String"] = theme.wave.pink,
+		["@keyword.return"] = theme.wave.softred,
+		["@keyword.exception"] = theme.wave.softred,
 
 		["Special"] = theme.wave.pink,
-		["@variable.parameter"] = theme.wave.pink,
+		["@variable.parameter"] = theme.dp.softyellow,
 	}
 
 	for group, colors in pairs(groups) do
