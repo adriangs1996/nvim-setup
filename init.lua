@@ -275,7 +275,58 @@ if vim.g.colors_name == "nord" then
 	link("@keyword.function", "@keyword")
 end
 
-vim.cmd.colorscheme("kanagawa")
+vim.cmd.colorscheme("catppuccin-mocha")
+
+if vim.g.colors_name == "catppuccin-mocha" then
+	local theme = {
+		mocha = {
+			red = { fg = "#F38BA8" },
+			orange = { fg = "#FAB387" },
+			blue = { fg = "#89B4FA" },
+			green = { fg = "#A6E3A1" },
+			teal = { fg = "#94E2D5" },
+			cyan = { fg = "#74C7EC" },
+			yellow = { fg = "#F9E2AF" },
+			purple = { fg = "#CBA6F7" },
+			brown = { fg = "#FFCA80", gui = "italic" },
+		},
+	}
+
+	local groups = {
+		["@variable.parameter"] = theme.mocha.brown,
+
+		["@type"] = theme.mocha.cyan,
+		["@type.builtin"] = theme.mocha.red,
+		["@constructor"] = theme.mocha.cyan,
+		["Type"] = theme.mocha.cyan,
+		["@lsp.type"] = theme.mocha.cyan,
+		["@lsp.typemod.class.declaration"] = theme.mocha.cyan,
+
+		["Keyword"] = theme.mocha.red,
+		["Repeat"] = theme.mocha.red,
+		["Conditional"] = theme.mocha.red,
+		["@keyword.function"] = theme.mocha.red,
+		["@keyword.return"] = theme.mocha.red,
+		["@keyword.exception"] = theme.mocha.red,
+		["@keyword.import"] = theme.mocha.red,
+
+		["String"] = theme.mocha.blue,
+
+		["Function"] = theme.mocha.green,
+		["Number"] = theme.mocha.green,
+		["@function.builtin"] = theme.mocha.green,
+
+		["@property"] = theme.mocha.yellow,
+
+		["@attribute"] = theme.mocha.orange,
+		["@attribute.builtin"] = theme.mocha.orange,
+	}
+
+	for group, colors in pairs(groups) do
+		highlight(group, colors)
+	end
+end
+
 if vim.g.colors_name == "kanagawa" then
 	local colors = require("kanagawa.colors").setup({ theme = "wave" }).palette
 	local theme = {
