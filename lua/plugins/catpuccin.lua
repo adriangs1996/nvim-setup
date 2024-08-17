@@ -7,11 +7,24 @@ return { -- You can easily change to a different colorscheme.
 	name = "catppuccin",
 	priority = 1000, -- Make sure to load this before all the other start plugins.
 	init = function()
-		-- Load the colorscheme here.
-		-- Like many other themes, this one has different styles, and you could load
-		-- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-
-		-- You can configure highlights by doing something like:
-		--	vim.cmd.hi("Comment gui=none")
+		require("catppuccin").setup({
+			color_overrides = {
+				all = {
+					base = "#0b0d0f",
+					mantle = "#0b0d0f",
+					crust = "#0b0d0f",
+				},
+			},
+			integrations = {
+				telescope = {
+					style = "nvchad",
+					enabled = true,
+				},
+				dropbar = {
+					enabled = true,
+					color_mode = true,
+				},
+			},
+		})
 	end,
 }
