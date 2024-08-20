@@ -7,7 +7,7 @@ return { -- Collection of various small independent plugins/modules
 			require("lualine").setup({
 				options = {
 					icons_enabled = true,
-					theme = "auto",
+					theme = "venomshade",
 					component_separators = { left = "", right = "" },
 					section_separators = { left = "", right = "" },
 					disabled_filetypes = {
@@ -27,17 +27,9 @@ return { -- Collection of various small independent plugins/modules
 					lualine_a = { "mode" },
 					lualine_b = {
 						"branch",
-						"diff",
-						"diagnostics",
-						{
-							"swenv",
-							cond = function()
-								return vim.bo.filetype == "python"
-							end,
-						},
 					},
 					lualine_c = { "filename" },
-					lualine_x = { "encoding", "fileformat", "filetype" },
+					-- lualine_x = { "encoding", "fileformat", "filetype" },
 					lualine_y = { "progress" },
 					lualine_z = { "location" },
 				},

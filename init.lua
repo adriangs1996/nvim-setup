@@ -248,7 +248,7 @@ if vim.g.colors_name == "catppuccin-mocha" then
 		["@keyword.exception"] = theme.mocha.red,
 		["@keyword.import"] = theme.mocha.red,
 
-		["String"] = theme.mocha.blue,
+		["String"] = theme.mocha.yellow,
 
 		["Function"] = theme.mocha.green,
 		["Number"] = theme.mocha.green,
