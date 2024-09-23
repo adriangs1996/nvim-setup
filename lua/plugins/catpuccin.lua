@@ -10,9 +10,12 @@ return { -- You can easily change to a different colorscheme.
 		require("catppuccin").setup({
 			color_overrides = {
 				all = {
-					base = "#0b0d0f",
-					mantle = "#0b0d0f",
-					crust = "#0b0d0f",
+					-- base = "#0b0d0f",
+					-- mantle = "#0b0d0f",
+					-- crust = "#0b0d0f",
+					base = "#1e1f22",
+					mantle = "#1e1f22",
+					crust = "#1e1f22",
 				},
 			},
 			integrations = {

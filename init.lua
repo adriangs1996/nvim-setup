@@ -202,6 +202,18 @@ lsp.clangd.setup({
 	end,
 })
 
+lsp.ruby_lsp.setup({
+	on_init = function(client)
+		client.server_capabilities.semanticTokensProvider = nil
+	end,
+})
+
+lsp.sorbet.setup({
+	on_init = function(client)
+		client.server_capabilities.semanticTokensProvider = nil
+	end,
+})
+
 vim.cmd("highlight! Cursor guifg=#A6E3A1 guibg=#A6E3A1")
 
 vim.keymap.set(
@@ -214,7 +226,8 @@ vim.keymap.set(
 vim.cmd.colorscheme("catppuccin-mocha")
 
 if vim.g.colors_name == "catppuccin-mocha" then
-	highlight("Normal", { bg = "#0B0D0F", fg = "#F8f8f2" })
+	-- highlight("Normal", { bg = "#0B0D0F", fg = "#F8f8f2" })
+	highlight("Normal", { bg = "#1e1f22", fg = "#F8f8f2" })
 
 	local theme = {
 		mocha = {
@@ -227,39 +240,88 @@ if vim.g.colors_name == "catppuccin-mocha" then
 			yellow = { fg = "#F9E2AF" },
 			purple = { fg = "#CBA6F7" },
 			brown = { fg = "#FFCA80", gui = "italic" },
+			white = { fg = "#F8f8f2" },
+		},
+
+		jbdark = {
+			white = { fg = "#BCBEC4" },
+			orange = { fg = "#CF8E6D" },
+			yellow = { fg = "#B3AE60" },
+			blue = { fg = "#57AAF7" },
+			teal = { fg = "#6FAFBD" },
+			cyan = { fg = "#6FAFBD" },
+			red = { fg = "#CC7C8A" },
+			pink = { fg = "#C77DBB" },
+			purple = { fg = "#9C9CFF" },
+			lightOrange = { fg = "#e6b163" },
+			green = { fg = "#6AAB73" },
+		},
+
+		newDark = {
+			white = { fg = "#BCBEC4" },
+			orange = { fg = "#CF8E6D" },
+			yellow = { fg = "#9CD785" },
+			sky = { fg = "#ADD3FF" },
+			blue = { fg = "#6C95EB" },
+			teal = { fg = "#66C3CC" },
+			cyan = { fg = "#4EC9B0" },
+			red = { fg = "#CC7C8A" },
+			pink = { fg = "#D981DE" },
+			purple = { fg = "#C191FF" },
+			lightOrange = { fg = "#DEBC7E" },
+			green = { fg = "#39CC9B" },
+			brown = { fg = "#C9A26D" },
 		},
 	}
 
 	local groups = {
-		["@variable.parameter"] = theme.mocha.purple,
+		["@variable.parameter"] = theme.newDark.sky,
+		["@parameter"] = theme.newDark.sky,
 
-		["@type"] = theme.mocha.cyan,
-		["@type.builtin"] = theme.mocha.red,
-		["@constructor"] = theme.mocha.cyan,
-		["Type"] = theme.mocha.cyan,
-		["@lsp.type"] = theme.mocha.cyan,
-		["@lsp.typemod.class.declaration"] = theme.mocha.cyan,
+		["@variable.builtin"] = theme.newDark.red,
 
-		["Keyword"] = theme.mocha.red,
-		["Repeat"] = theme.mocha.red,
-		["Conditional"] = theme.mocha.red,
-		["@keyword.function"] = theme.mocha.red,
-		["@keyword.return"] = theme.mocha.red,
-		["@keyword.exception"] = theme.mocha.red,
-		["@keyword.import"] = theme.mocha.red,
+		["@lsp.type.parameter.dockerfile"] = theme.newDark.white,
+		["@function.call.ruby"] = theme.newDark.white,
+		["@lsp.type.method.ruby"] = theme.newDark.white,
 
-		["String"] = theme.mocha.yellow,
+		["@type"] = theme.newDark.purple,
+		["@constructor"] = theme.newDark.purple,
+		["Type"] = theme.newDark.purple,
+		["@lsp.type"] = theme.newDark.purple,
+		["@lsp.typemod.class.declaration"] = theme.newDark.purple,
+		["@lsp.type.namespace.ruby"] = theme.newDark.purple,
 
-		["Function"] = theme.mocha.green,
-		["Number"] = theme.mocha.green,
-		["@function.builtin"] = theme.mocha.green,
+		["Keyword"] = theme.newDark.blue,
+		["Boolean"] = theme.newDark.blue,
+		["Repeat"] = theme.newDark.blue,
+		["Conditional"] = theme.newDark.blue,
+		["Operator"] = theme.newDark.blue,
+		["@keyword.function"] = theme.newDark.blue,
+		["@keyword.return"] = theme.newDark.blue,
+		["@keyword.exception"] = theme.newDark.blue,
+		["@keyword.import"] = theme.newDark.blue,
+		["@type.builtin"] = theme.newDark.blue,
 
-		["@property"] = theme.mocha.teal,
+		["String"] = theme.newDark.brown,
+		["@string.documentation"] = theme.newDark.brown,
 
-		["@attribute"] = theme.mocha.orange,
-		["@attribute.builtin"] = theme.mocha.orange,
+		["Function"] = theme.newDark.green,
+		["@lsp.type.keyword.dockerfile"] = theme.newDark.green,
+		["@function.builtin"] = theme.newDark.green,
 
-		["@variable"] = { fg = "#f8f8f2" },
+		["@property"] = theme.newDark.teal,
+		["@variable.member"] = theme.newDark.teal,
+		["@string.special.symbol.ruby"] = theme.newDark.teal,
+
+		["@attribute"] = theme.newDark.yellow,
+		["@attribute.builtin"] = theme.newDark.yellow,
+		["@function.builtin.ruby"] = theme.newDark.yellow,
+		["@lsp.type.parameter.ruby"] = theme.newDark.yellow,
+		["Number"] = theme.newDark.yellow,
+
+		["@variable"] = theme.newDark.white,
+
+		["Constant"] = theme.newDark.pink,
 	}
 
 	for group, colors in pairs(groups) do
