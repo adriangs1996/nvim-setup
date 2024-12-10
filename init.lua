@@ -214,7 +214,7 @@ lsp.sorbet.setup({
 	end,
 })
 
-vim.cmd("highlight! Cursor guifg=#A6E3A1 guibg=#A6E3A1")
+vim.cmd("highlight! Cursor guifg=#afcb85 guibg=#afcb85")
 
 vim.keymap.set(
 	"n",
@@ -223,108 +223,81 @@ vim.keymap.set(
 	{ noremap = true, silent = true }
 )
 
-vim.cmd.colorscheme("catppuccin-mocha")
-
-if vim.g.colors_name == "catppuccin-mocha" then
-	-- highlight("Normal", { bg = "#0B0D0F", fg = "#F8f8f2" })
-	highlight("Normal", { bg = "#1e1f22", fg = "#F8f8f2" })
+if vim.g.colors_name == "fleet" then
+	local palette = require("fleet-theme.palette")
 
 	local theme = {
-		mocha = {
-			red = { fg = "#F38BA8" },
-			orange = { fg = "#FAB387" },
-			blue = { fg = "#89B4FA" },
-			green = { fg = "#A6E3A1" },
-			teal = { fg = "#94E2D5" },
-			cyan = { fg = "#74C7EC" },
-			yellow = { fg = "#F9E2AF" },
-			purple = { fg = "#CBA6F7" },
-			brown = { fg = "#FFCA80", gui = "italic" },
-			white = { fg = "#F8f8f2" },
-		},
-
-		jbdark = {
-			white = { fg = "#BCBEC4" },
-			orange = { fg = "#CF8E6D" },
-			yellow = { fg = "#B3AE60" },
-			blue = { fg = "#57AAF7" },
-			teal = { fg = "#6FAFBD" },
-			cyan = { fg = "#6FAFBD" },
-			red = { fg = "#CC7C8A" },
-			pink = { fg = "#C77DBB" },
-			purple = { fg = "#9C9CFF" },
-			lightOrange = { fg = "#e6b163" },
-			green = { fg = "#6AAB73" },
-		},
-
-		newDark = {
-			white = { fg = "#BCBEC4" },
-			orange = { fg = "#CF8E6D" },
-			yellow = { fg = "#9CD785" },
-			sky = { fg = "#ADD3FF" },
-			blue = { fg = "#6C95EB" },
-			teal = { fg = "#66C3CC" },
-			cyan = { fg = "#4EC9B0" },
-			red = { fg = "#CC7C8A" },
-			pink = { fg = "#D981DE" },
-			purple = { fg = "#C191FF" },
-			lightOrange = { fg = "#DEBC7E" },
-			green = { fg = "#39CC9B" },
-			brown = { fg = "#C9A26D" },
+		red = { fg = "#F38BA8" },
+		-- greenie = { fg = "#9CD785" },
+		greenie = { fg = palette.palette.green },
+		orange = { fg = palette.palette.orange },
+		purple = { fg = palette.palette.purple },
+		blue = { fg = palette.palette.light_blue },
+		vscode = {
+			green = "#68A67E",
 		},
 	}
 
 	local groups = {
-		["@variable.parameter"] = theme.newDark.sky,
-		["@parameter"] = theme.newDark.sky,
+		["@attribute"] = theme.greenie,
+		["@attribute.builtin"] = theme.greenie,
+		["rubyModuleName"] = theme.greenie,
+		["@attribute.builtin.python"] = theme.greenie,
+		["@function.builtin.ruby"] = theme.greenie,
+		["@constant.ruby"] = theme.greenie,
+		["Special"] = theme.purple,
+		["String"] = { fg = palette.palette.pink },
+		["@string"] = { fg = palette.palette.pink },
+		["Number"] = { fg = palette.palette.pink },
+		["@function.builtin.python"] = theme.orange,
 
-		["@variable.builtin"] = theme.newDark.red,
+		["@variable.member.ruby"] = { fg = palette.palette.purple },
+		["@variable.parameter"] = { fg = palette.palette.red },
+		["@lsp.mod.defaultLibrary"] = { fg = palette.palette.red },
+		["@variable.member"] = { fg = palette.palette.orange },
+		["@lsp.type.property"] = { fg = palette.palette.orange },
 
-		["@lsp.type.parameter.dockerfile"] = theme.newDark.white,
-		["@function.call.ruby"] = theme.newDark.white,
-		["@lsp.type.method.ruby"] = theme.newDark.white,
-
-		["@type"] = theme.newDark.purple,
-		["@constructor"] = theme.newDark.purple,
-		["Type"] = theme.newDark.purple,
-		["@lsp.type"] = theme.newDark.purple,
-		["@lsp.typemod.class.declaration"] = theme.newDark.purple,
-		["@lsp.type.namespace.ruby"] = theme.newDark.purple,
-
-		["Keyword"] = theme.newDark.blue,
-		["Boolean"] = theme.newDark.blue,
-		["Repeat"] = theme.newDark.blue,
-		["Conditional"] = theme.newDark.blue,
-		["Operator"] = theme.newDark.blue,
-		["@keyword.function"] = theme.newDark.blue,
-		["@keyword.return"] = theme.newDark.blue,
-		["@keyword.exception"] = theme.newDark.blue,
-		["@keyword.import"] = theme.newDark.blue,
-		["@type.builtin"] = theme.newDark.blue,
-
-		["String"] = theme.newDark.brown,
-		["@string.documentation"] = theme.newDark.brown,
-
-		["Function"] = theme.newDark.green,
-		["@lsp.type.keyword.dockerfile"] = theme.newDark.green,
-		["@function.builtin"] = theme.newDark.green,
-
-		["@property"] = theme.newDark.teal,
-		["@variable.member"] = theme.newDark.teal,
-		["@string.special.symbol.ruby"] = theme.newDark.teal,
-
-		["@attribute"] = theme.newDark.yellow,
-		["@attribute.builtin"] = theme.newDark.yellow,
-		["@function.builtin.ruby"] = theme.newDark.yellow,
-		["@lsp.type.parameter.ruby"] = theme.newDark.yellow,
-		["Number"] = theme.newDark.yellow,
-
-		["@variable"] = theme.newDark.white,
-
-		["Constant"] = theme.newDark.pink,
+		["@variable.builtin"] = theme.orange,
+		["@constant.builtin.python"] = { fg = palette.palette.cyan },
+		["@tag.builtin.tsx"] = { fg = palette.palette.cyan },
+		["@variable.builtin.python"] = theme.purple,
+		["@constructor.python"] = theme.blue,
+		["@boolean.ruby"] = { fg = palette.palette.cyan },
+		["@property.yaml"] = { fg = palette.palette.cyan },
+		["@string.special.symbol.ruby"] = { fg = palette.palette.orange },
+		["@function.call"] = { fg = palette.palette.light },
+		["@function.method.call"] = { fg = palette.palette.light },
+		["@constructor"] = { fg = palette.palette.light_blue },
+		["@boolean"] = { fg = palette.palette.cyan },
+		["Boolean"] = { fg = palette.palette.cyan },
+		["@tag.attribute"] = { fg = palette.palette.orange },
 	}
 
 	for group, colors in pairs(groups) do
 		highlight(group, colors)
 	end
 end
+
+vim.cmd("colorscheme catppuccin-mocha")
+if vim.g.colors_name == "catppuccin-mocha" then
+	highlight("Normal", { bg = "#1e1e2e" })
+	local palette = require("catppuccin.palettes.mocha")
+
+	local groups = {
+		["@variable.member.ruby"] = { fg = palette.teal },
+		["@module"] = { fg = palette.teal },
+		["@namespace"] = { fg = palette.teal },
+		["Conditional"] = { fg = palette.sky },
+		["Include"] = { fg = palette.sky },
+		["@type.builtin"] = { fg = palette.sky },
+		["@tag.tsx"] = { fg = palette.yellow },
+	}
+
+	for group, colors in pairs(groups) do
+		highlight(group, colors)
+	end
+end
+
+vim.keymap.set("n", "<C-r>", ":tabnew<CR>:DBUI<CR>")
+vim.keymap.set("n", "<C-p>", ":tabp<CR>")
+vim.keymap.set("n", "<C-n>", ":tabn<CR>")

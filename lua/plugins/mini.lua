@@ -7,7 +7,6 @@ return { -- Collection of various small independent plugins/modules
 			require("lualine").setup({
 				options = {
 					icons_enabled = true,
-					theme = "venomshade",
 					component_separators = { left = "", right = "" },
 					section_separators = { left = "", right = "" },
 					disabled_filetypes = {

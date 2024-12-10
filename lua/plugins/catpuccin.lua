@@ -6,18 +6,20 @@ return { -- You can easily change to a different colorscheme.
 	"catppuccin/nvim",
 	name = "catppuccin",
 	priority = 1000, -- Make sure to load this before all the other start plugins.
+	opts = {
+		transparent_background = true,
+		term_colors = true,
+		dim_inactive = {
+			enabled = true,
+			shade = "dark",
+			percentage = 0.50,
+		},
+		integrations = {
+			bufferline = false,
+		},
+	},
 	init = function()
 		require("catppuccin").setup({
-			color_overrides = {
-				all = {
-					-- base = "#0b0d0f",
-					-- mantle = "#0b0d0f",
-					-- crust = "#0b0d0f",
-					base = "#1e1f22",
-					mantle = "#1e1f22",
-					crust = "#1e1f22",
-				},
-			},
 			integrations = {
 				telescope = {
 					style = "nvchad",

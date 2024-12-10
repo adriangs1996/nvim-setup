@@ -24,6 +24,13 @@ return { -- Fuzzy Finder (files, lsp, etc)
 	},
 	config = function()
 		require("telescope").setup({
+			defaults = {
+				mappings = {
+					i = {
+						["<C-i>"] = require("telescope.actions").select_default,
+					},
+				},
+			},
 			extensions = {
 				["ui-select"] = {
 					require("telescope.themes").get_dropdown(),
@@ -37,7 +44,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		local loaded, _ = pcall(require("telescope").load_extension, "file_browser")
 
 		if not loaded then
-			vim.notify("Telescope file_browser not loaded.")
+			vim.notify("Telescope file_browser not loaded. Run :PackerInstall telescope-file-browser.nvim")
 		end
 
 		-- See `:help telescope.builtin`

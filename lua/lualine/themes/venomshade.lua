@@ -4,6 +4,7 @@ local colors = {
 	white = "#f8f8f2",
 	red = "#F38BA8",
 	green = "#A6E3A1",
+	-- green = "#afcb85",
 	magenta = "#CBA6F7",
 	blue = "#74C7EC",
 	yellow = "#F9E2AF",
