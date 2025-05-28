@@ -4,6 +4,8 @@
 
 vim.keymap.set("n", "<leader>fs", ":w<CR>", { desc = "[S]ave file" })
 vim.keymap.set("n", "<leader>fS", ":w<CR>", { desc = "[S]ave file" })
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 local letters = "abcdefghijklmnopqrstuvwxyz"
 for i = 1, #letters do
