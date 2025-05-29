@@ -1,3 +1,5 @@
+local tk_pink = "#fca7ea"
+
 return {
   {
     "catppuccin/nvim",
@@ -7,6 +9,10 @@ return {
       color_overrides = {
         mocha = {
           -- base = "#191724",
+        },
+        macchiato = {
+          -- pink = "#FF80BF",
+          pink = tk_pink,
         },
       },
       highlight_overrides = {
@@ -21,130 +27,86 @@ return {
             Normal = { fg = latte.base },
           }
         end,
+
         macchiato = function(colors)
           return {
             Comment = { fg = colors.surface2, style = { "italic" } }, -- just comments
-            Constant = { fg = colors.peach }, -- (preferred) any constant
-            String = { fg = colors.yellow, style = { "italic", "bold" } }, -- a string constant: "this is a string"
-            Character = { fg = colors.teal }, --  a character constant: 'c', '\n'
-            Number = { fg = colors.maroon }, --   a number constant: 234, 0xff
-            Float = { fg = colors.maroon }, --    a floating point constant: 2.3e10
-            Boolean = { fg = colors.maroon }, --  a boolean constant: TRUE, false
-            Identifier = { fg = colors.text }, -- (preferred) any variable name
-            Function = { fg = colors.green }, -- function name (also: methods for classes)
-            Statement = { fg = colors.mauve }, -- (preferred) any statement
-            Conditional = { fg = colors.red }, --  if, then, else, endif, switch, etcp.
-            Repeat = { fg = colors.red }, --   for, do, while, etcp.
-            Label = { fg = colors.peach }, --    case, default, etcp.
-            Operator = { fg = colors.text }, -- "sizeof", "+", "*", etcp.
-            Keyword = { fg = colors.pink }, --  any other keyword
-            Exception = { fg = colors.pink }, --  any other keyword
-            PreProc = { fg = colors.peach }, -- (preferred) generic Preprocessor
-            Include = { fg = colors.green }, --  preprocessor #include
-            StorageClass = { fg = colors.yellow }, -- static, register, volatile, etcp.
-            Structure = { fg = colors.yellow }, --  struct, union, enum, etcp.
-            Typedef = { fg = colors.yellow }, --  A typedef
-            Special = { fg = colors.peach }, -- (preferred) any special symbol
-            Type = { fg = colors.teal }, -- (preferred) int, long, char, etcp.
-            TSInclude = { fg = colors.peach, style = { "italic" } },
-            ["@include"] = { fg = colors.peach, style = { "italic" } },
-            TSField = { fg = colors.blue }, -- For fields.
-            ["@field"] = { fg = colors.blue }, -- For fields.
-            TSProperty = { fg = colors.blue }, -- Same as TSField.
-            ["@property"] = { fg = colors.blue }, -- Same as TSField.
-            TSConstant = { fg = colors.maroon }, -- For constants
-            ["@constant.builtin"] = { fg = colors.maroon }, -- For constants
-            TSParameter = { fg = colors.text, style = { "italic" } }, -- For parameters of a function.
-            ["@parameter"] = { fg = colors.text, style = { "italic" } }, -- For parameters of a function.
-            TSOperator = { fg = colors.text },
-            ["@operator"] = { fg = colors.text },
-            TSKeywordFunction = { fg = colors.peach }, -- For keywords used to define a fuction.
-            ["@keyword.function"] = { fg = colors.peach }, -- For keywords used to define a fuction.
-            TSKeyword = { fg = colors.peach }, -- For keywords that don't fall in previous categories.
-            ["@keyword"] = { fg = colors.peach }, -- For keywords that don't fall in previous categories.
-            ["@keyword.export"] = { fg = colors.peach }, -- For keywords that don't fall in previous categories.
-            TSKeywordReturn = { fg = colors.peach },
-            ["@keyword.return"] = { fg = colors.peach },
-            TSType = { fg = colors.teal }, -- For types.
-            ["@type"] = { fg = colors.teal }, -- For types.
-            TSTypeBuiltin = { fg = colors.teal, style = { "italic" } }, -- For builtin types.
-            ["@type.builtin"] = { fg = colors.teal, style = { "italic" } }, -- For builtin types.
-            TSVariableBuiltin = { fg = colors.red }, -- Variable names that are defined by the languages, like this or self.
-            ["@variable.builtin"] = { fg = colors.red }, -- Variable names that are defined by the languages, like this or self.
-            TSFunction = { fg = colors.green }, -- For function (calls and definitions).
-            ["@function.builtin"] = { fg = colors.green }, -- For function (calls and definitions).
-            TSMethod = { fg = colors.green }, -- For method calls and definitions.
-            ["@function"] = { fg = colors.green }, -- For method calls and definitions.
-            TSString = { fg = colors.yellow, style = { "italic" } }, -- For strings.
-            ["@string"] = { fg = colors.yellow, style = { "italic" } }, -- For strings.
-            BufferLineSeparator = { fg = colors.peach, bg = "NONE" },
-            BufferLineBufferVisible = { fg = colors.surface1, bg = "NONE" },
-            BufferLineBufferSelected = { fg = colors.text, bg = "NONE", style = { "bold", "italic" } }, -- current
-            BufferLineIndicatorSelected = { fg = colors.peach, bg = "NONE" },
-          }
-        end,
-        mocha = function(colors)
-          return {
-            Comment = { fg = colors.surface2, style = { "italic" } }, -- just comments
+
             Constant = { fg = colors.mauve }, -- (preferred) any constant
             Interface = { fg = colors.mauve }, -- (preferred) any constant
-            String = { fg = colors.yellow, style = { "italic", "bold" } }, -- a string constant: "this is a string"
-            Character = { fg = colors.teal }, --  a character constant: 'c', '\n'
+            Statement = { fg = colors.mauve }, -- (preferred) any statement
+            ["@module"] = { fg = colors.mauve, style = { "italic" } },
+            ["@lsp.type.interface"] = { fg = colors.mauve, style = { "italic" } },
+
             Number = { fg = colors.maroon }, --   a number constant: 234, 0xff
             Float = { fg = colors.maroon }, --    a floating point constant: 2.3e10
             Boolean = { fg = colors.maroon }, --  a boolean constant: TRUE, false
+            TSConstant = { fg = colors.maroon }, -- For constants
+            ["@constant.builtin"] = { fg = colors.maroon }, -- For constants
+
             Identifier = { fg = colors.text }, -- (preferred) any variable name
-            Function = { fg = colors.green }, -- function name (also: methods for classes)
-            Statement = { fg = colors.mauve }, -- (preferred) any statement
+            Operator = { fg = colors.text }, -- "sizeof", "+", "*", etcp.
+            TSParameter = { fg = colors.text, style = { "italic" } }, -- For parameters of a function.
+            TSOperator = { fg = colors.text },
+            ["@operator"] = { fg = colors.text },
+
+            ["@parameter"] = { fg = colors.peach, style = { "italic" } }, -- For parameters of a function.
+            ["@variable.parameter"] = { fg = colors.peach, style = { "italic" } }, -- For parameters of a function.
+
             Conditional = { fg = colors.red }, --  if, then, else, endif, switch, etcp.
             Repeat = { fg = colors.red }, --   for, do, while, etcp.
-            Label = { fg = colors.peach }, --    case, default, etcp.
-            Operator = { fg = colors.text }, -- "sizeof", "+", "*", etcp.
+
+            Label = { fg = colors.pink }, --    case, default, etcp.
             Keyword = { fg = colors.pink }, --  any other keyword
             Exception = { fg = colors.pink }, --  any other keyword
-            PreProc = { fg = colors.peach }, -- (preferred) generic Preprocessor
-            Include = { fg = colors.green }, --  preprocessor #include
+            PreProc = { fg = colors.pink }, -- (preferred) generic Preprocessor
+            TSInclude = { fg = colors.pink, style = { "italic" } },
+            ["@include"] = { fg = colors.pink, style = { "italic" } },
+            Special = { fg = colors.pink }, -- (preferred) any special symbol
+            TSKeywordFunction = { fg = colors.pink }, -- For keywords used to define a fuction.
+            ["@keyword.function"] = { fg = colors.pink }, -- For keywords used to define a fuction.
+            TSKeyword = { fg = colors.pink }, -- For keywords that don't fall in previous categories.
+            ["@keyword"] = { fg = colors.pink }, -- For keywords that don't fall in previous categories.
+            ["@keyword.export"] = { fg = colors.pink }, -- For keywords that don't fall in previous categories.
+            TSKeywordReturn = { fg = colors.pink },
+            BufferLineSeparator = { fg = colors.pink, bg = "NONE" },
+            ["@keyword.return"] = { fg = colors.pink },
+            BufferLineIndicatorSelected = { fg = colors.pink, bg = "NONE" },
+
+            String = { fg = colors.yellow, style = { "italic", "bold" } }, -- a string constant: "this is a string"
             StorageClass = { fg = colors.yellow }, -- static, register, volatile, etcp.
             Structure = { fg = colors.yellow }, --  struct, union, enum, etcp.
             Typedef = { fg = colors.yellow }, --  A typedef
-            Special = { fg = colors.peach }, -- (preferred) any special symbol
-            Type = { fg = colors.teal }, -- (preferred) int, long, char, etcp.
-            ["@lsp.type.interface"] = { fg = colors.sapphire, style = { "italic" } },
-            TSInclude = { fg = colors.peach, style = { "italic" } },
-            ["@include"] = { fg = colors.peach, style = { "italic" } },
-            TSField = { fg = colors.blue }, -- For fields.
-            ["@field"] = { fg = colors.blue }, -- For fields.
-            TSProperty = { fg = colors.blue }, -- Same as TSField.
-            ["@property"] = { fg = colors.blue }, -- Same as TSField.
-            TSConstant = { fg = colors.maroon }, -- For constants
-            ["@constant.builtin"] = { fg = colors.maroon }, -- For constants
-            TSParameter = { fg = colors.text, style = { "italic" } }, -- For parameters of a function.
-            ["@parameter"] = { fg = colors.text, style = { "italic" } }, -- For parameters of a function.
-            TSOperator = { fg = colors.text },
-            ["@operator"] = { fg = colors.text },
-            TSKeywordFunction = { fg = colors.peach }, -- For keywords used to define a fuction.
-            ["@keyword.function"] = { fg = colors.peach }, -- For keywords used to define a fuction.
-            TSKeyword = { fg = colors.peach }, -- For keywords that don't fall in previous categories.
-            ["@keyword"] = { fg = colors.peach }, -- For keywords that don't fall in previous categories.
-            ["@keyword.export"] = { fg = colors.peach }, -- For keywords that don't fall in previous categories.
-            TSKeywordReturn = { fg = colors.peach },
-            ["@keyword.return"] = { fg = colors.peach },
-            TSType = { fg = colors.teal }, -- For types.
-            ["@type"] = { fg = colors.teal }, -- For types.
-            TSTypeBuiltin = { fg = colors.teal, style = { "italic" } }, -- For builtin types.
-            ["@type.builtin"] = { fg = colors.teal, style = { "italic" } }, -- For builtin types.
-            TSVariableBuiltin = { fg = colors.red }, -- Variable names that are defined by the languages, like this or self.
-            ["@variable.builtin"] = { fg = colors.red }, -- Variable names that are defined by the languages, like this or self.
-            TSFunction = { fg = colors.green }, -- For function (calls and definitions).
-            ["@function.builtin"] = { fg = colors.green }, -- For function (calls and definitions).
-            TSMethod = { fg = colors.green }, -- For method calls and definitions.
-            ["@function"] = { fg = colors.green }, -- For method calls and definitions.
             TSString = { fg = colors.yellow, style = { "italic" } }, -- For strings.
             ["@string"] = { fg = colors.yellow, style = { "italic" } }, -- For strings.
-            BufferLineSeparator = { fg = colors.peach, bg = "NONE" },
+
+            Character = { fg = colors.sky }, --  a character constant: 'c', '\n'
+            Type = { fg = colors.sky }, -- (preferred) int, long, char, etcp.
+            TSField = { fg = colors.peach }, -- For fields.
+            TSType = { fg = colors.sky }, -- For types.
+            ["@type"] = { fg = colors.sky }, -- For types.
+            TSTypeBuiltin = { fg = colors.sky, style = { "italic" } }, -- For builtin types.
+            ["@type.builtin"] = { fg = colors.sky, style = { "italic" } }, -- For builtin types.
+
+            ["@field"] = { fg = colors.lavender }, -- For fields.
+            TSProperty = { fg = colors.lavender }, -- Same as TSField.
+            ["@property"] = { fg = colors.lavender }, -- Same as TSField.
+            ["@string.special.symbol.ruby"] = { fg = colors.lavender },
+
+            TSVariableBuiltin = { fg = colors.red }, -- Variable names that are defined by the languages, like this or self.
+            ["@variable.builtin"] = { fg = colors.red }, -- Variable names that are defined by the languages, like this or self.
+
+            Include = { fg = colors.green }, --  preprocessor #include
+            Function = { fg = colors.green }, -- function name (also: methods for classes)
+            ["@function.builtin"] = { fg = colors.green }, -- For function (calls and definitions).
+            TSFunction = { fg = colors.green }, -- For function (calls and definitions).
+            TSMethod = { fg = colors.green }, -- For method calls and definitions.
+
+            ["@function.ruby"] = { fg = colors.blue },
+            ["@lsp.typemod.function.declaration"] = { fg = colors.blue },
+
             BufferLineBufferVisible = { fg = colors.surface1, bg = "NONE" },
             BufferLineBufferSelected = { fg = colors.text, bg = "NONE", style = { "bold", "italic" } }, -- current
-            BufferLineIndicatorSelected = { fg = colors.peach, bg = "NONE" },
           }
         end,
       },
@@ -207,7 +169,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin-mocha",
+      colorscheme = "catppuccin-macchiato",
     },
   },
 }
