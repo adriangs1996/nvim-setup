@@ -26,7 +26,6 @@ local dp = {
 
 if vim.g.colors_name == "tokyonight-moon" then
   local tk = require("tokyonight.colors.moon")
-
   local groups = {
     -- ["@lsp.type.enum"] = { fg = palette.mauve },
     ["@constructor"] = { fg = tk.blue1 },
@@ -38,24 +37,23 @@ if vim.g.colors_name == "tokyonight-moon" then
 end
 
 -- vim.highlight.priorities.semantic_tokens = 95
-if vim.g.colors_name == "catppuccin-macchiato" then
+if vim.g.colors_name == "catppuccin-mocha" then
   --   highlight("Normal", { bg = "#1e1e2e" })
   --   -- highlight("Normal", { bg = "#191724" })
   --   -- highlight("Normal", { bg = "#1e1f22" })
-  local palette = require("catppuccin.palettes.macchiato")
+  local palette = require("catppuccin.palettes.mocha")
   --   local rp = require("rose-pine.palette")
   --   local palettemo = require("catppuccin.palettes.frappe")
   --   local palettefo = require("catppuccin.palettes.macchiato")
   local tk = require("tokyonight.colors.moon")
-  vim.api.nvim_set_hl(0, "MyCustomType", { fg = palette.mauve })
-  vim.api.nvim_set_hl(0, "Decorators", { fg = palette.mauve })
-  --   vim.api.nvim_set_hl(0, "SelfT", { fg = palette.maroon })
-  vim.api.nvim_set_hl(0, "get", { fg = palette.mauve })
-  vim.api.nvim_set_hl(0, "post", { fg = palette.mauve })
-  vim.api.nvim_set_hl(0, "put", { fg = palette.mauve })
-  vim.api.nvim_set_hl(0, "delete", { fg = palette.mauve })
-  vim.api.nvim_set_hl(0, "sign", { fg = palette.mauve })
-  vim.api.nvim_set_hl(0, "inject", { fg = palette.mauve })
+  vim.api.nvim_set_hl(0, "MyCustomType", { fg = palette.red })
+  vim.api.nvim_set_hl(0, "Decorators", { fg = palette.flamingo })
+  vim.api.nvim_set_hl(0, "get", { fg = palette.flamingo })
+  vim.api.nvim_set_hl(0, "post", { fg = palette.flamingo })
+  vim.api.nvim_set_hl(0, "put", { fg = palette.flamingo })
+  vim.api.nvim_set_hl(0, "delete", { fg = palette.flamingo })
+  vim.api.nvim_set_hl(0, "sign", { fg = palette.flamingo })
+  vim.api.nvim_set_hl(0, "inject", { fg = palette.flamingo })
   vim.fn.matchadd("MyCustomType", "\\<I[A-Z]\\w\\+\\>")
   vim.fn.matchadd("Decorators", "@\\w\\+\\(?:\\.\\w\\+\\)*")
   vim.fn.matchadd("get", "^\\s*get\\> ")
